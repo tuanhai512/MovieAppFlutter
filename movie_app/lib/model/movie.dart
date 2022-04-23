@@ -1,70 +1,108 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'movie.g.dart';
+//part 'movie.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Result {
-    Result({
-        required this.page,
-        required this.results,
-        required this.totalPages,
-        required this.totalResults,
-    });
+  Result({
+    required this.page,
+    required this.results,
+    required this.totalPages,
+    required this.totalResults,
+  });
 
-    int? page;
-    List<Movie>? results;
-    int? totalPages;
-    int? totalResults;
+  int? page;
+  List<Movie>? results;
+  int? totalPages;
+  int? totalResults;
 
-   factory Result.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
-   Map<String, dynamic> toJson() => _$MovieToJson(this);
+  factory Result.fromJson(Map<String, dynamic>? json) {
+    final results = json?['results'] as List<dynamic>?;
+    if (json == null) {
+      return Result(
+          page: null, results: [], totalResults: null, totalPages: null);
+    }
 
- @override 
+    return Result(
+      page: json["page"],
+      results: (json['results'] as List<dynamic>?)
+          ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalPages: json["total_pages"],
+      totalResults: json["total_results"],
+    );
+  }
+
+  @override
   String toString() {
     return 'Movie{page: $page, totalResults: $totalResults, totalPages: $totalPages, results: $results}';
-   }
- 
+  }
 }
-@JsonSerializable()
+
 class Movie {
-    Movie({
-        required this.adult,
-        required this.backdropPath,
-        required this.genreIds,
-        required this.id,
-        required this.originalLanguage,
-        required this.originalTitle,
-        required this.overview,
-        required this.popularity,
-        required this.posterPath,
-        required this.releaseDate,
-        required this.title,
-        required this.video,
-        required this.voteAverage,
-        required this.voteCount,
-    });
+  String? backdropPath;
+  int? id;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  String? releaseDate;
+  String? title;
+  bool? video;
+  int? voteCount;
+  String? voteAverage;
 
-    bool? adult;
-    String? backdropPath;
-    List<int>? genreIds;
-    int? id;
-    String? originalLanguage;
-    String? originalTitle;
-    String? overview;
-    double? popularity;
-    String? posterPath;
-    String? releaseDate;
-    String? title;
-    bool? video;
-    double? voteAverage;
-    int? voteCount;
+  late String error;
 
-     
- factory Movie.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
-  Map<String, dynamic> toJson() => _$ResultToJson(this);
+  Movie(
+      {required this.backdropPath,
+      required this.id,
+      required this.originalLanguage,
+      required this.originalTitle,
+      required this.overview,
+      required this.popularity,
+      required this.posterPath,
+      required this.releaseDate,
+      required this.title,
+      required this.video,
+      required this.voteCount,
+      required this.voteAverage});
 
-    
+  factory Movie.fromJson(dynamic json) {
+    if (json == null) {
+      return Movie(
+          backdropPath: '',
+          id: 0,
+          originalLanguage: '',
+          originalTitle: '',
+          overview: '',
+          popularity: 0,
+          posterPath: '',
+          releaseDate: '',
+          title: '',
+          video: true,
+          voteAverage: '',
+          voteCount: 0);
+    }
+
+    return Movie(
+        backdropPath: json['backdrop_path'] as String?,
+        id: json['id'] as int?,
+        originalLanguage: json['original_language'] as String?,
+        originalTitle: json['original_title'] as String?,
+        overview: json['overview'] as String?,
+        popularity: json['popularity'] as double?,
+        posterPath: json['poster_path'] as String?,
+        releaseDate: json['release_date'] as String?,
+        title: json['title'] as String?,
+        video: json['video'] as bool?,
+        voteCount: json['vote_count'] as int?,
+        voteAverage: json['vote_average'].toString() as String?);
+  }
 }
+
+
 
 
 // import 'package:json_annotation/json_annotation.dart';
