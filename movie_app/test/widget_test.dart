@@ -9,21 +9,19 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 
-
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/network/client.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 
 void main() {
-  test("Test api", ()async {
+  test("Test api", () async {
     Client client = Client();
     http.Response response = await client.getPopular();
-    if(response.statusCode == 200)
-    {
+    if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
-     // final movies = Movie.fromJson(json);
-     // prints(movies.toString());
+      // final movies = Movie.fromJson(json);
+      // prints(movies.backdropPath);
     }
   });
 }
