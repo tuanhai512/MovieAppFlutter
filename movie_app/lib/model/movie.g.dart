@@ -33,7 +33,7 @@ Movie _$ResultFromJson(Map<String, dynamic> json) => Movie(
       overview: json['overview'] as String?,
       popularity: (json['popularity'] as num).toDouble(),
       posterPath: json['posterPath'] as String?,
-      releaseDate: json['releaseDate'] as String?,
+      releaseDate: json['releaseDate/'] as String?,
       title: json['title'] as String?,
       video: json['video'] as bool?,
       voteAverage: (json['voteAverage'] as num?)?.toDouble(),
