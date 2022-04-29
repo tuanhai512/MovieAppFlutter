@@ -4,11 +4,19 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/network/client.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../home/homepage.dart';
+
 class landingPage extends StatefulWidget {
+  static String routeName = '/list_movie';
+
   @override
   State<landingPage> createState() => _landingPageState();
 }
@@ -21,14 +29,13 @@ class _landingPageState extends State<landingPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Movie"),
+
       ),
       body: FutureBuilder<Result?>(
         future: convertFromJsonToModel(client.getPopular()),
         builder: (BuildContext context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(),);
           }
           if (snapshot.hasData) {
             if (snapshot.data?.results?.length == 0) {
@@ -66,12 +73,13 @@ class _landingPageState extends State<landingPage> {
     );
   }
 
-  Future<Result?> convertFromJsonToModel(Future<http.Response> response) async {
-    final responseResult = await response;
-    if (responseResult.statusCode == 200) {
-      final jsMap = jsonDecode(responseResult.body);
-      return Result.fromJson(jsMap);
-    }
+  Future<Result?> convertFromJsonToModel(Future<http.Response> response)async
+  {
+      final responseResult = await response;
+      if(responseResult.statusCode == 200){
+        final jsMap =   jsonDecode(responseResult.body);
+        return Result.fromJson(jsMap);
+      }
     return null;
   }
 }
