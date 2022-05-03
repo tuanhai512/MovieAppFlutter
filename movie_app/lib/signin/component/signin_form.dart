@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:movie_app/home/homepage.dart';
 import 'package:movie_app/screen/landingPage.dart';
 import 'package:movie_app/signup/signuppage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../home/component/fragment/home_frag/product_popular.dart';
 
 class SigninForm extends StatefulWidget {
   @override
@@ -46,8 +49,9 @@ class _SigninFormState extends State<SigninForm> {
     String? rePassword = prefs.getString('password');
     //
     if (strUserName == reUsername && strPassword == rePassword) {
-      Navigator.of(context)
-          .pushReplacementNamed(landingPage.routeName);
+      // Navigator.of(context).pushReplacementNamed(landingPage.routeName);
+
+      Navigator.of(context).pushReplacementNamed(HomePage.routeName);
     } else {
       return showDialog(
           context: context,

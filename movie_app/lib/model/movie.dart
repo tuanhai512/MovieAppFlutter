@@ -41,13 +41,13 @@ class Result {
 
 class Movie {
   String? backdropPath;
-  int? id;
+  int? id,  year,vote_count;
   String? originalLanguage;
   String? originalTitle;
   String? overview;
   double? popularity;
   String? posterPath;
-  String? releaseDate;
+  String? release_date;
   String? title;
   bool? video;
   int? voteCount;
@@ -58,12 +58,15 @@ class Movie {
   Movie(
       {required this.backdropPath,
       required this.id,
+        required this.vote_count,
+
+      required this.year,
       required this.originalLanguage,
       required this.originalTitle,
       required this.overview,
       required this.popularity,
       required this.posterPath,
-      required this.releaseDate,
+      required this.release_date,
       required this.title,
       required this.video,
       required this.voteCount,
@@ -72,14 +75,17 @@ class Movie {
   factory Movie.fromJson(dynamic json) {
     if (json == null) {
       return Movie(
+
+          vote_count: 0,
           backdropPath: '',
           id: 0,
+          year: 0,
           originalLanguage: '',
           originalTitle: '',
           overview: '',
           popularity: 0,
           posterPath: '',
-          releaseDate: '',
+          release_date: '',
           title: '',
           video: true,
           voteAverage: '',
@@ -89,21 +95,20 @@ class Movie {
     return Movie(
         backdropPath: json['backdrop_path'] as String?,
         id: json['id'] as int?,
+        vote_count: json['vote_count'] as int?,
+        year: json['year'] as int?,
         originalLanguage: json['original_language'] as String?,
         originalTitle: json['original_title'] as String?,
         overview: json['overview'] as String?,
         popularity: json['popularity'] as double?,
         posterPath: json['poster_path'] as String?,
-        releaseDate: json['release_date'] as String?,
+        release_date: json['release_date'] as String?,
         title: json['title'] as String?,
         video: json['video'] as bool?,
         voteCount: json['vote_count'] as int?,
         voteAverage: json['vote_average'].toString() as String?);
   }
 }
-
-
-
 
 // import 'package:json_annotation/json_annotation.dart';
 // part 'movie.g.dart';
@@ -119,7 +124,7 @@ class Movie {
 //   factory Results.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 //   Map<String, dynamic> toJson() => _$MovieToJson(this);
 
-//   @override 
+//   @override
 //   String toString() {
 //     return 'Movie{page: $page, totalResults: $totalResults, totalPages: $totalPages, results: $results}';
 //   }
@@ -145,7 +150,5 @@ class Movie {
 //   Movie();
 //  factory Movie.fromJson(Map<String, dynamic> json) => _$ResultsFromJson(json);
 //   Map<String, dynamic> toJson() => _$ResultsToJson(this);
- 
+
 // }
-
-

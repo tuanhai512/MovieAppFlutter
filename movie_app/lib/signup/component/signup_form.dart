@@ -5,6 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movie_app/model/utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../signin/signinpage.dart';
+
 class SignUpForm extends StatefulWidget {
   @override
   _SignUpFormState createState() => _SignUpFormState();
@@ -21,7 +23,7 @@ class _SignUpFormState extends State<SignUpForm> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', _username);
     prefs.setString('password', _password);
-   // /  return Navigator.of(context).pushNamed(Signin.routeName);
+     return Navigator.of(context).pushNamed(Signin.routeName);
     //flutter run --no-sound-null-safety
   }
 

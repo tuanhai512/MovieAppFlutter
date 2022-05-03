@@ -7,7 +7,9 @@ class HomeFrag extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        children: [CategoriesStore(), ProductPopular()],
+        children: [
+          // CategoriesStore(),
+          MovieItem()],
       ),
     );
   }

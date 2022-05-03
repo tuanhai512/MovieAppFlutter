@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:movie_app/bloc/moviebloc/movie_bloc_state.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

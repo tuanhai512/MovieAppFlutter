@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/details/details_screen.dart';
 import 'package:movie_app/screen/landingPage.dart';
 import 'package:movie_app/home/homepage.dart';
 import 'package:movie_app/signin/signinpage.dart';
@@ -31,10 +32,11 @@ class MyApp extends StatelessWidget {
         home: Signin(),
         routes: {
           // Signin.routeName: (context) => Signin(),
-          landingPage.routeName: (context) => landingPage(),
+           landingPage.routeName: (context) => landingPage(),
           HomePage.routeName: (context) => HomePage(),
-
           SignupPage.routeName: (context) => SignupPage(),
+          // DetailsScreen.routeName : (context) => DetailsScreen(),
+
         }
         // home:HomePage(),
         );
