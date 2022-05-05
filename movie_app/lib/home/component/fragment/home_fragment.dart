@@ -9,7 +9,8 @@ class HomeFrag extends StatelessWidget {
       child: ListView(
         children: [
           // CategoriesStore(),
-          MovieItem()],
+          MoviePopular()
+        ],
       ),
     );
   }

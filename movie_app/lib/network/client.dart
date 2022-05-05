@@ -17,7 +17,6 @@ class Client {
 
   Future<http.Response> getTopRate() async {
     var url = Uri.parse("$baseUrl/movie/now_playing?api_key=$apiKey&page=5");
-    var reponse = await http.get(url);
      var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');

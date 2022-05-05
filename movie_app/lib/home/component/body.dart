@@ -19,6 +19,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     List<Widget> screen = [
       HomeFrag(),
+      FavoriteFrag(),
       NotificationFrag(),
       AccountFrag()
     ];

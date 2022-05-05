@@ -23,12 +23,14 @@ class MoviePopular extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                      'Categories',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.lightBlueAccent),
-                    )),
+                  'Categories',
+
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.lightBlueAccent
+                  ),
+                )),
                 Text(
                   'See more',
                   style: TextStyle(fontSize: 16, color: Colors.lightBlue),
@@ -38,22 +40,17 @@ class MoviePopular extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Container(
-              height: 250,
-              width: MediaQuery.of(context).size.width,
-              child: MovieItem(
-    )
-            )
           ],
         ),
+
       ),
+
     );
   }
 }
 
 class MovieItem extends StatelessWidget {
   Client client = Client();
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +59,8 @@ class MovieItem extends StatelessWidget {
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            // child: CircularProgressIndicator(),
-          );
+              // child: CircularProgressIndicator(),
+              );
         }
         if (snapshot.hasData) {
           if (snapshot.data?.results?.length == 0) {
@@ -74,32 +71,27 @@ class MovieItem extends StatelessWidget {
             return ListView.builder(
                 itemCount: snapshot.data?.results?.length,
                 scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
                 itemBuilder: (ctx, index) {
                   Movie? movie = snapshot.data?.results?[index];
 
-                  return Card(
-                        child: GestureDetector(
-                          onTap: () {
-                            //print(product.id.toString());
-                            // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                            Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => DetailsScreen(movie: movie!)));
-                          },
-                          child: Container(
-                            child: Image.network('https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
-
-                          ),
+                     return GestureDetector(
+                        onTap: () {
+                          //print(product.id.toString());
+                          // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailsScreen(movie: movie!)));
+                        },
+                        child: Container(
+                          child: Image.network(
+                              'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
                         ),
+                      );
+                      // Widget to display the list of project
 
-
-
-                  );
-
-
-
-                }
-            );
+                });
           }
         }
         if (snapshot.hasError) {
@@ -113,7 +105,6 @@ class MovieItem extends StatelessWidget {
       },
     );
   }
-
 }
 
 Future<Result?> convertFromJsonToModel(Future<http.Response> response) async {
