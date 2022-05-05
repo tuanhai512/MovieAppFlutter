@@ -23,7 +23,7 @@ class MoviePopular extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  'Categories',
+                  'Poppular',
 
                   style: TextStyle(
                       fontSize: 18,
@@ -34,13 +34,20 @@ class MoviePopular extends StatelessWidget {
                 Text(
                   'See more',
                   style: TextStyle(fontSize: 16, color: Colors.lightBlue),
-                ),
+                  ),
               ],
             ),
             SizedBox(
               height: 10,
             ),
+           Container(
+             height: 500,
+             child:MovieItem()
+             ,
+           )
+
           ],
+
         ),
 
       ),
@@ -85,8 +92,14 @@ class MovieItem extends StatelessWidget {
                                       DetailsScreen(movie: movie!)));
                         },
                         child: Container(
-                          child: Image.network(
-                              'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
+
+                            child: Image.network(
+                                'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
+                              height: 150,
+                              width: 150,
+                            ),
+
+
                         ),
                       );
                       // Widget to display the list of project
