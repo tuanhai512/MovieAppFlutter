@@ -15,27 +15,27 @@ class _AccountFragState extends State<AccountFrag> {
         child: Column(
           children: [
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             emailTextFormField(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             nameTextFormField(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             addressTextFormField(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             passwordTextFormField(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             conformTextFormField(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             SizedBox(
               height: 50,
@@ -57,7 +57,7 @@ class _AccountFragState extends State<AccountFrag> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Container(
               width: MediaQuery.of(context).size.width,

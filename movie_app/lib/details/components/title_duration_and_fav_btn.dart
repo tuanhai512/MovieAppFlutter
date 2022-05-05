@@ -34,7 +34,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                     ),
                     SizedBox(width: 20),
                     Text(
-                      "2h 32min",
+                      '${movie.popularity}',
                       style: TextStyle(color: Color(0xFF9A9BB2)),
                     ),
                   ],
@@ -42,21 +42,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 64,
-            width: 64,
-            child: FlatButton(
-              onPressed: () {},
-              color: Color(0xFFFE6D8E),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: Icon(
-                Icons.add,
-                size: 28,
-                color: Colors.white,
-              ),
-            ),
-          )
+
         ],
       ),
     );

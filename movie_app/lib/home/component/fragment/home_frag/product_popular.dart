@@ -58,6 +58,7 @@ class MovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Result?>(
+
       future: convertFromJsonToModel(client.getPopular()),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -72,12 +73,14 @@ class MovieItem extends StatelessWidget {
             );
           } else {
             return ListView.builder(
+
                 itemCount: snapshot.data?.results?.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (ctx, index) {
                   Movie? movie = snapshot.data?.results?[index];
 
                   return Card(
+
                     child: GestureDetector(
                       onTap: () {
                         //print(product.id.toString());
@@ -89,8 +92,11 @@ class MovieItem extends StatelessWidget {
                                     DetailsScreen(movie: movie!)));
                       },
                       child: Container(
-                        child: Image.network(
-                            'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
+
+                        child: Image.network('https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
+                          width: 155,
+
+                        ),
                       ),
                     ),
                   );

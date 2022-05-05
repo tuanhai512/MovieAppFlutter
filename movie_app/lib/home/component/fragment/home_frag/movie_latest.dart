@@ -23,7 +23,7 @@ class MovieLatest extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  'Categories',
+                  'Lastest',
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -87,8 +87,10 @@ class MovieItemLastest extends StatelessWidget {
                                     DetailsScreen(movie: movie!)));
                       },
                       child: Container(
-                        child: Image.network(
-                            'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
+
+                        child: Image.network('https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
+                          width: 155,
+                        ),
                       ),
                     ),
                   );

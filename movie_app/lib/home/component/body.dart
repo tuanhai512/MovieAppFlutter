@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/home/component/fragment/account_fragment.dart';
+ import 'package:movie_app/home/component/fragment/account_fragment.dart';
 import 'package:movie_app/home/component/fragment/favorite_fragment.dart';
 import 'package:movie_app/home/component/fragment/home_fragment.dart';
 import 'package:movie_app/home/component/fragment/notification_fragment.dart';
@@ -21,7 +21,7 @@ class _BodyState extends State<Body> {
       HomeFrag(),
       FavoriteFrag(),
       NotificationFrag(),
-      AccountFrag()
+     // AccountFrag()
     ];
 
     return Scaffold(
@@ -35,7 +35,10 @@ class _BodyState extends State<Body> {
         onTap: (index) {
           setState(() {
             selectIndex = index;
-            if (selectIndex != 3) {
+            if (selectIndex != 3)
+              // if (selectIndex != 3)
+
+              {
               flag = true;
             } else {
               flag = false;
@@ -55,10 +58,10 @@ class _BodyState extends State<Body> {
             icon: Icon(Icons.notifications),
             label: 'Notification',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Account',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.account_circle),
+          //   label: 'Account',
+          // ),
         ],
       ),
       body: SafeArea(
