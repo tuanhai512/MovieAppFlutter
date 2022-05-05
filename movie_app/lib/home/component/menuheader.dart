@@ -11,10 +11,13 @@ class MenuHeader extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
+               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
+                 
                     child: Text(
                   "Account info",
+                  
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

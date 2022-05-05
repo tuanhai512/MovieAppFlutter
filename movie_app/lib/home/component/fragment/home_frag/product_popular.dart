@@ -28,8 +28,7 @@ class MoviePopular extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.lightBlueAccent
-                  ),
+                      color: Colors.lightBlueAccent),
                 )),
                 Text(
                   'See more',
@@ -40,18 +39,15 @@ class MoviePopular extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-           Container(
-             height: 500,
-             child:MovieItem()
-             ,
-           )
-
+            Container(
+              width: 300,
+              height: 300,
+              child: MovieItem(),
+            )
           ],
 
         ),
-
       ),
-
     );
   }
 }
@@ -81,29 +77,23 @@ class MovieItem extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   Movie? movie = snapshot.data?.results?[index];
 
-                     return GestureDetector(
-                        onTap: () {
-                          //print(product.id.toString());
-                          // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      DetailsScreen(movie: movie!)));
-                        },
-                        child: Container(
-
-                            child: Image.network(
-                                'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
-                              height: 150,
-                              width: 150,
-                            ),
-
-
-                        ),
-                      );
-                      // Widget to display the list of project
-
+                  return Card(
+                    child: GestureDetector(
+                      onTap: () {
+                        //print(product.id.toString());
+                        // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailsScreen(movie: movie!)));
+                      },
+                      child: Container(
+                        child: Image.network(
+                            'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
+                      ),
+                    ),
+                  );
                 });
           }
         }
