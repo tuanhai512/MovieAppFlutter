@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/model/movie.dart';
 
 class FavoriteFrag extends StatelessWidget {
-  List<Movie> products;
+  // List<Movie> products;
 
-  FavoriteFrag(this.products);
+  // FavoriteFrag(this.products);
 
   @override
   Widget build(BuildContext context) {
-    print(products.length.toString());
+    // print(products.length.toString());
     return Expanded(
       child: Container(
-        child: ListView.builder(
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-              return ProductItemList(
-
-              );
-            }),
+        // child: ListView.builder(
+        //     itemCount: products.length,
+        //     itemBuilder: (context, index) {
+        //       return ProductItemList(
+        //
+        //       );
+        //     }
+        //     ),
       ),
     );
   }

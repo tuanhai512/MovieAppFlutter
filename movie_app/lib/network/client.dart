@@ -8,7 +8,7 @@ class Client {
   var baseUrl = 'https://api.themoviedb.org/3';
 
   Future<http.Response> getPopular() async {
-    var url = Uri.parse("$baseUrl/movie/now_playing?api_key=$apiKey&page=5");
+    var url = Uri.parse("$baseUrl/movie/popular?api_key=$apiKey&page=1");
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -16,13 +16,29 @@ class Client {
   }
 
   Future<http.Response> getTopRate() async {
-    var url = Uri.parse("$baseUrl/movie/now_playing?api_key=$apiKey&page=5");
-    var reponse = await http.get(url);
-     var response = await http.get(url);
+    var url = Uri.parse("$baseUrl/movie/top_rated?api_key=$apiKey&page=5");
+    var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     return response;
   }
+
+  Future<http.Response> getNowPlaying() async {
+    var url = Uri.parse("$baseUrl/movie/now_playing?api_key=$apiKey&page=5");
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    return response;
+  }
+
+  Future<http.Response> getUpComing() async {
+    var url = Uri.parse("$baseUrl/movie/upcoming?api_key=$apiKey&page=5");
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    return response;
+  }
+
 //  Future<List<Movie>> getNowPlayingMovie() async {
 //     try {
 //       final url = '$baseUrl/movie/now_playing?$apiKey';

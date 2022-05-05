@@ -23,12 +23,12 @@ class MoviePopular extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                      'Categories',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.lightBlueAccent),
-                    )),
+                  'Categories',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.lightBlueAccent),
+                )),
                 Text(
                   'See more',
                   style: TextStyle(fontSize: 16, color: Colors.lightBlue),
@@ -39,10 +39,9 @@ class MoviePopular extends StatelessWidget {
               height: 10,
             ),
             Container(
-              height: 250,
-              width: MediaQuery.of(context).size.width,
-              child: MovieItem(
-    )
+              width: 300,
+              height: 300,
+              child: MovieItem(),
             )
           ],
         ),
@@ -73,7 +72,6 @@ class MovieItem extends StatelessWidget {
             return ListView.builder(
                 itemCount: snapshot.data?.results?.length,
                 scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
                 itemBuilder: (ctx, index) {
                   Movie? movie = snapshot.data?.results?[index];
 
