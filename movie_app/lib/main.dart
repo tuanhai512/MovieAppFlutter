@@ -6,9 +6,7 @@ import 'package:movie_app/signin/signinpage.dart';
 import 'package:movie_app/signup/signuppage.dart';
 
 void main() {
-  runApp(
-      MyApp()
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,12 +29,11 @@ class MyApp extends StatelessWidget {
         ),
         home: Signin(),
         routes: {
-          // Signin.routeName: (context) => Signin(),
-           landingPage.routeName: (context) => landingPage(),
+          Signin.routeName: (context) => Signin(),
+          landingPage.routeName: (context) => landingPage(),
           HomePage.routeName: (context) => HomePage(),
           SignupPage.routeName: (context) => SignupPage(),
           // DetailsScreen.routeName : (context) => DetailsScreen(),
-
         }
         // home:HomePage(),
         );

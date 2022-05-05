@@ -54,7 +54,6 @@ class MoviePopular extends StatelessWidget {
 class MovieItem extends StatelessWidget {
   Client client = Client();
 
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Result?>(
@@ -62,8 +61,8 @@ class MovieItem extends StatelessWidget {
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-            // child: CircularProgressIndicator(),
-          );
+              // child: CircularProgressIndicator(),
+              );
         }
         if (snapshot.hasData) {
           if (snapshot.data?.results?.length == 0) {
@@ -79,27 +78,23 @@ class MovieItem extends StatelessWidget {
                   Movie? movie = snapshot.data?.results?[index];
 
                   return Card(
-                        child: GestureDetector(
-                          onTap: () {
-                            //print(product.id.toString());
-                            // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                            Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => DetailsScreen(movie: movie!)));
-                          },
-                          child: Container(
-                            child: Image.network('https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
-
-                          ),
-                        ),
-
-
-
+                    child: GestureDetector(
+                      onTap: () {
+                        //print(product.id.toString());
+                        // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailsScreen(movie: movie!)));
+                      },
+                      child: Container(
+                        child: Image.network(
+                            'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
+                      ),
+                    ),
                   );
-
-
-
-                }
-            );
+                });
           }
         }
         if (snapshot.hasError) {
@@ -113,7 +108,6 @@ class MovieItem extends StatelessWidget {
       },
     );
   }
-
 }
 
 Future<Result?> convertFromJsonToModel(Future<http.Response> response) async {

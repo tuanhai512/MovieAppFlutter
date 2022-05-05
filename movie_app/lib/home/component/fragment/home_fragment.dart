@@ -6,11 +6,14 @@ class HomeFrag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView(
-        children: [
-          // CategoriesStore(),
-          MovieItem()],
-      ),
+      child: Container(
+          child: Container(
+        child: MoviePopular(),
+      )
+
+          // MovieItem()
+
+          ),
     );
   }
 }
