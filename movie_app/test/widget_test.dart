@@ -17,7 +17,7 @@ import 'package:http/http.dart' as http;
 void main() {
   test("Test api", () async {
     Client client = Client();
-    http.Response response = await client.getLatest();
+    http.Response response = await client.getPopular();
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       // final movies = Movie.fromJson(json);
