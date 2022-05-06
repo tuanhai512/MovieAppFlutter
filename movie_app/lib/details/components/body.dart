@@ -22,25 +22,51 @@ class Body extends StatelessWidget {
           BackdropAndRating(size: size, movie: movie),
           SizedBox(height: 20 / 2),
           TitleDurationAndFabBtn(movie: movie),
-          Container(
-            child: FlatButton(
-              onPressed: () async {
-                final youtubeUrl =
-                    "https://www.youtube.com/watch?v=761uRaAoW00";
-                if (await canLaunch(youtubeUrl)) {
-                  launch(youtubeUrl);
-                }
-              },
-              color: Color(0xFFFE6D8E),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: Icon(
-                Icons.add,
-                size: 28,
-                color: Colors.white,
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 20 / 2,
+              horizontal: 20,
+            ),
+            child: SizedBox(
+              height: 64,
+              width: 350,
+              child: FlatButton(
+                onPressed: () async {
+                  final youtubeUrl =
+                      "https://www.youtube.com/watch?v=761uRaAoW00";
+                  if (await canLaunch(youtubeUrl)) {
+                    launch(youtubeUrl);
+                  }
+                },
+                color: Color(0xFFFE6D8E),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                child: Icon(
+                  Icons.add,
+                  size: 28,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 20 / 2,
+              horizontal: 20,
+            ),
+            child: Text(
+              "Plot Summary \n ",
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 20,
+            ),
+            child: Text('${movie.overview}'),
+          )
 
           // CastAndCrew(casts: movie.cast),
         ],

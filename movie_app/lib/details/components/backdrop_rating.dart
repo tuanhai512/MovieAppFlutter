@@ -87,8 +87,7 @@ class BackdropAndRating extends StatelessWidget {
                       children: <Widget>[
                         SvgPicture.asset("assets/icons/star.svg"),
                         SizedBox(height: 20 / 4),
-                        Text("Rate This",
-                            style: Theme.of(context).textTheme.bodyText2),
+                        Text("Rate This", style: Theme.of(context).textTheme.bodyText2),
                       ],
                     ),
                     // Metascore
@@ -117,7 +116,7 @@ class BackdropAndRating extends StatelessWidget {
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          "${movie.vote_count!} critic reviews",
+                          "${movie.vote_count!} reviews",
                           style: TextStyle(color: Color(0xFF9A9BB2)),
                         )
                       ],
