@@ -13,7 +13,7 @@ class HomeHeader extends StatelessWidget {
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                hintText: "Search product",
+                hintText: "Search movie",
                 prefixIcon: Icon(Icons.search)),
           ),
         ),
