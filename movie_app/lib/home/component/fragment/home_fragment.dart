@@ -9,7 +9,7 @@ class HomeFrag extends StatelessWidget {
     return Expanded(
       child: ListView(
           children: [
-            MovieLatest(),
+            // MovieLatest(),
             MoviePopular()
           ]
       ),

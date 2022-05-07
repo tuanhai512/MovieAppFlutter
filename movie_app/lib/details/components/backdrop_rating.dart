@@ -62,23 +62,18 @@ class BackdropAndRating extends StatelessWidget {
                       children: <Widget>[
                         SvgPicture.asset("assets/icons/star_fill.svg"),
                         SizedBox(height: 20 / 4),
-                        RichText(
-                          text: TextSpan(
-                            style: TextStyle(color: Colors.black),
-                            children: [
-                              TextSpan(
-                                text: '${movie.voteAverage!}',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w600),
-                              ),
-                              TextSpan(text: "/10\n"),
-                              TextSpan(
-                                text: "150,212",
-                                style: TextStyle(color: Color(0xFF9A9BB2)),
-                              ),
-                            ],
-                          ),
-                        ),
+                        Column(children: [
+                          Text('${movie.voteAverage!}/10'),
+                          Row(children: [
+                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
+                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
+                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
+                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
+                            Icon(Icons.star_half,color: Colors.yellowAccent,size: 13,),
+
+                          ],)
+                        ],)
+
                       ],
                     ),
                     // Rate this

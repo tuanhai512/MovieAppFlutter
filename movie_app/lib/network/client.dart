@@ -38,7 +38,39 @@ class Client {
     print('Response body: ${response.body}');
     return response;
   }
-
+  //
+  // Future<Movie> getMovieDetail(int movieId) async {
+  //   try {
+  //     // final response = await _dio.get('$baseUrl/movie/$movieId?$apiKey');
+  //     var url = Uri.parse('$baseUrl/movie/$movieId?$apiKey');
+  //
+  //     Movie movieDetail = Movie.fromJson(url.data);
+  //
+  //     movieDetail.trailerId = await getYoutubeId(movieId);
+  //
+  //     // movieDetail.movieImage = await getMovieImage(movieId);
+  //     //
+  //     // movieDetail.castList = await getCastList(movieId);
+  //
+  //     return movieDetail;
+  //   } catch (error, stacktrace) {
+  //     throw Exception(
+  //         'Exception accoured: $error with stacktrace: $stacktrace');
+  //   }
+  // }
+  //
+  // Future<String> getYoutubeId(int id) async {
+  //   try {
+  //     // final response = await _dio.get('$baseUrl/movie/$id/videos?$apiKey');
+  //     var url = Uri.parse('$baseUrl/movie/$id/videos?$apiKey');
+  //     final test="['results'][0]['key']";
+  //     var youtubeId = url.data '${test}';
+  //     return youtubeId;
+  //   } catch (error, stacktrace) {
+  //     throw Exception(
+  //         'Exception accoured: $error with stacktrace: $stacktrace');
+  //   }
+  // }
 //  Future<List<Movie>> getNowPlayingMovie() async {
 //     try {
 //       final url = '$baseUrl/movie/now_playing?$apiKey';

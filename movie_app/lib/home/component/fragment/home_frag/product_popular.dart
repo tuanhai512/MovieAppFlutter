@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
@@ -39,8 +40,8 @@ class MoviePopular extends StatelessWidget {
               height: 10,
             ),
             Container(
-              width: 300,
-              height: 200,
+              width: 350,
+              height: 300,
               child: MovieItem(),
             )
           ],
@@ -76,25 +77,108 @@ class MovieItem extends StatelessWidget {
                   Movie? movie = snapshot.data?.results?[index];
 
                   return Card(
-                    child: GestureDetector(
-                      onTap: () {
-                        //print(product.id.toString());
-                        // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    DetailsScreen(movie: movie!)));
-                      },
-                      child: Container(
-                        height: 200,
-                        width: 250,
-                        child: Image.network(
-                            'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
-                           
-                            fit: BoxFit.fill),
-                      ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0)
                     ),
+                    child: GestureDetector(
+                        onTap: () {
+                          //print(product.id.toString());
+                          // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailsScreen(movie: movie!)));
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 200,
+                              width: 179,
+                              child: Image.network(
+                                'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Container(
+                              width: 180,
+                              child: Text(
+                                '${movie!.title}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black54,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Container(
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                    size: 14,
+                                  ),
+                                  Text(
+                                    '${movie!.voteAverage}',
+                                    style: TextStyle(
+                                      color: Colors.yellow,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 60,
+                                  ),
+                                    Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5.0)
+                                    ),
+                                    color: Colors.yellow,
+
+                                    child: Padding(padding: EdgeInsets.all(5),
+                                     child: Text('IDMB ${movie!.voteAverage}',
+                                          style: TextStyle(
+                              fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                    )
+
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                // Container(
+                                //   decoration: BoxDecoration(
+                                //     gradient: LinearGradient(
+                                //       begin: Alignment.topRight,
+                                //       end: Alignment.bottomLeft,
+                                //       colors: [
+                                //         Colors.blue,
+                                //         Colors.red,
+                                //       ],
+                                //     )
+                                // ),
+                                //  child: Icon(
+                                //     Icons.favorite,
+                                //     size: 14,
+                                //   ),
+                                // ),
+
+                                Icon(Icons.favorite_rounded,
+                                size:24,
+                                color: Colors.redAccent,),
+                                SizedBox(width: 45),
+                                Icon(Icons.play_circle_outline_outlined,
+                                    size:24,
+                                 color:Colors.purpleAccent,
+                                ),
+                              ],
+                            )
+                          ],
+                        )),
                   );
                 });
           }
