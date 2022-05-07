@@ -91,7 +91,6 @@ class MovieItem extends StatelessWidget {
                         width: 250,
                         child: Image.network(
                             'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
-                           
                             fit: BoxFit.fill),
                       ),
                     ),

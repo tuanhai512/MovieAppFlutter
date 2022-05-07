@@ -46,7 +46,8 @@ class _AccountFragState extends State<AccountFrag> {
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                color: Colors.lightBlueAccent,
+                //  color: Colors.lightBlueAccent,
+                focusColor: Colors.black,
                 child: Text(
                   "Continue",
                   style: TextStyle(
@@ -130,7 +131,9 @@ class _AccountFragState extends State<AccountFrag> {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffixIcon: Icon(Icons.lock_outline)),
     );
-  }TextFormField addressTextFormField() {
+  }
+
+  TextFormField addressTextFormField() {
     return TextFormField(
       decoration: InputDecoration(
           border: OutlineInputBorder(),
@@ -141,6 +144,7 @@ class _AccountFragState extends State<AccountFrag> {
           suffixIcon: Icon(Icons.lock_outline)),
     );
   }
+
   TextFormField nameTextFormField() {
     return TextFormField(
       decoration: InputDecoration(

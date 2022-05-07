@@ -4,12 +4,10 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-
        mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: TextField(
-
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,

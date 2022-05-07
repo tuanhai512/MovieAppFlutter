@@ -52,7 +52,7 @@ class Movie {
   bool? video;
   int? voteCount;
   String? voteAverage;
-
+//  String? videoUrl;
   late String error;
 
   Movie(
