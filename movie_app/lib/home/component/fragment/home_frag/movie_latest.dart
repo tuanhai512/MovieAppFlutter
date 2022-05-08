@@ -48,9 +48,20 @@ class MovieLatest extends StatelessWidget {
                 Movie? movie = snapshot.data?.results?[index];
 
                 return new Stack(children: <Widget>[
-                  Image.network(
-                      'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
-                      fit: BoxFit.fitHeight),
+                    GestureDetector(
+                    onTap: () {
+                  //print(product.id.toString());
+                  // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DetailsScreen(movie: movie!)));
+                },
+                    child: Image.network(
+                        'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
+                        fit: BoxFit.fitHeight),),
+
                   Padding(
                       padding: EdgeInsets.only(left: 5, top: 100),
                       child: Text(

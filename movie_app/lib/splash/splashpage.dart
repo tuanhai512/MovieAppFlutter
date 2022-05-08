@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:movie_app/signin/signinpage.dart';
+import 'package:movie_app/home/homepage.dart';
 
 class SplashPage extends StatelessWidget {
   static String routeName = "/splash";
@@ -8,14 +8,19 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     new Future.delayed(new Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(
-          context, Signin.routeName, (Route<dynamic> route) => false);
+          context, HomePage.routeName, (Route<dynamic> route) => false);
     });
     return Scaffold(
       body: SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(color: Colors.lightBlueAccent),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                    ("assets/images/nguoinhen.jpg"),
+                  ),
+                  fit: BoxFit.fill)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -24,15 +29,22 @@ class SplashPage extends StatelessWidget {
                 strokeWidth: 5,
               ),
               SizedBox(
-                height: 5,
+                height: 30,
               ),
               Text(
-                'Loading...',
+                'Review',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
-              )
+              ),
+              Text(
+                'Movie',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
             ],
           ),
         ),

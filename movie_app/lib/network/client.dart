@@ -8,7 +8,7 @@ class Client {
   var baseUrl = 'https://api.themoviedb.org/3';
 
   Future<http.Response> getPopular() async {
-    var url = Uri.parse("$baseUrl/movie/popular?api_key=$apiKey&page=1");
+    var url = Uri.parse("$baseUrl/movie/popular?api_key=$apiKey&language=vi-US&page=1");
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -16,7 +16,7 @@ class Client {
   }
 
   Future<http.Response> getTopRate() async {
-    var url = Uri.parse("$baseUrl/movie/top_rated?api_key=$apiKey&page=5");
+    var url = Uri.parse("$baseUrl/movie/top_rated?api_key=$apiKey&language=vi-US&page=5");
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');

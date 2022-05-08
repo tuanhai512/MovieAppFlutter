@@ -38,6 +38,12 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                       style: TextStyle(color: Color(0xFF9A9BB2)),
                     ),
                   ],
+                ),
+                Row(
+                  children: [
+                    Text('Ngôn ngữ : ${movie.originalLanguage}'),
+
+                  ],
                 )
               ],
             ),

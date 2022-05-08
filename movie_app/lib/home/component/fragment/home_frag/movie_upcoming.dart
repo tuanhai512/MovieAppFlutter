@@ -4,13 +4,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
-import 'package:movie_app/constants.dart';
 import 'package:movie_app/details/details_screen.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/network/client.dart';
+import 'package:movie_app/constants.dart';
 
-class MoviePopular extends StatelessWidget {
-  static String routeName = '/movie_popular';
+class MovieUpcoming extends StatelessWidget {
+  static String routeName = '/movie_upcoming';
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +25,12 @@ class MoviePopular extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  ' PHỔ BIẾN',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: primarycolor),
-                )),
+                      ' PHIM SẮP CHIẾU',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: primarycolor),
+                    )),
                 // Text(
                 //   'See more',
                 //   style: TextStyle(fontSize: 16, color: Colors.lightBlue),
@@ -57,12 +57,12 @@ class MovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Result?>(
-      future: convertFromJsonToModel(client.getPopular()),
+      future: convertFromJsonToModel(client.getUpComing()),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-              // child: CircularProgressIndicator(),
-              );
+            // child: CircularProgressIndicator(),
+          );
         }
         if (snapshot.hasData) {
           if (snapshot.data?.results?.length == 0) {
@@ -131,16 +131,16 @@ class MovieItem extends StatelessWidget {
                                   Card(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10.0)),
+                                          BorderRadius.circular(10.0)),
                                       color: Colors.yellow,
                                       child: Padding(
                                         padding: EdgeInsets.all(5),
                                         child:
-                                            Text('IDMB ${movie!.voteAverage}',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.bold,
-                                                )),
+                                        Text('IDMB ${movie!.voteAverage}',
+                                            style: TextStyle(
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold,
+                                            )),
                                       )),
                                 ],
                               ),

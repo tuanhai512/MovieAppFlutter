@@ -13,11 +13,8 @@ import 'package:movie_app/signin/signinpage.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashPage.routeName : (context) => SplashPage(),
-  Signin.routeName : (context) => Signin(),
-  SignupPage.routeName : (context) => SignupPage(),
   HomePage.routeName : (context) => HomePage(),
   landingPage.routeName : (context) => landingPage(),
   // DetailsScreen.routeName : (context) => DetailsScreen(),
-  HomePage.routeName : (context) => HomePage(),
 
 };
