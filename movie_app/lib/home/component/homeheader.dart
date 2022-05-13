@@ -11,10 +11,10 @@ class HomeHeader extends StatelessWidget {
             decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                hintText: "Search movie",
-                prefixIcon: Icon(Icons.search)),
+                hintText: "Tên phim.....",)
+                // prefixIcon: Icon(Icons.search)),
           ),
-        ),
+        ),SizedBox(child: Icon(Icons.search),width: 60,)
         // GestureDetector(
         //   child: Container(
         //       height: 40,
@@ -26,3 +26,4 @@ class HomeHeader extends StatelessWidget {
     );
   }
 }
+            // Navigator.pushNamed(context, CartPage.routeName);

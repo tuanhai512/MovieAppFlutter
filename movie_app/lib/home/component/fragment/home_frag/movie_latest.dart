@@ -47,12 +47,22 @@ class MovieLatest extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 Movie? movie = snapshot.data?.results?[index];
 
-                return Container(
-                 
-                  child: new Stack(children: <Widget>[
-                    Image.network(
-                        'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
-                        fit: BoxFit.fill),
+                return new Stack(
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {
+                        //print(product.id.toString());
+                        // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailsScreen(movie: movie!)));
+                      },
+                      child: Image.network(
+                          'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
+                          fit: BoxFit.fitHeight),
+                    ),
                     Padding(
                         padding: EdgeInsets.only(left: 5, top: 100),
                         child: Text(
@@ -65,6 +75,25 @@ class MovieLatest extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.right,
                         )),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      color: Colors.yellow,
+                      margin: EdgeInsets.fromLTRB(180, 80, 0, 0),
+                      child: Container(
+                          margin: EdgeInsets.all(5),
+                          child: Text(
+                            movie?.title?.toUpperCase() ?? "",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                fontFamily: "null"),
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.right,
+                          )),
+                    ),
                     Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
@@ -82,7 +111,7 @@ class MovieLatest extends StatelessWidget {
                                 fontFamily: "null"),
                           ),
                         ))
-                  ]),
+                  ],
                 );
               },
               viewportFraction: 0.7,

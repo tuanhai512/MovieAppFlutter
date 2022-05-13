@@ -65,13 +65,16 @@ class BackdropAndRating extends StatelessWidget {
                         Column(children: [
                           Text('${movie.voteAverage!}/10'),
                           Row(children: [
-                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
-                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
-                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
-                            Icon(Icons.star,color: Colors.yellowAccent,size: 13,),
-                            Icon(Icons.star_half,color: Colors.yellowAccent,size: 13,),
+                            Icon(Icons.star,color: Colors.yellow,size: 13,),
+                            Icon(Icons.star,color: Colors.yellow,size: 13,),
+                            Icon(Icons.star,color: Colors.yellow,size: 13,),
+                            Icon(Icons.star,color: Colors.yellow,size: 13,),
+                            Icon(Icons.star_half,color: Colors.yellow,size: 13,),
 
-                          ],)
+                          ],),Text(
+                            "${movie.vote_count!} đánh giá",
+                            style: TextStyle(color: Color(0xFF9A9BB2)),
+                          )
                         ],)
 
                       ],
@@ -80,40 +83,33 @@ class BackdropAndRating extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SvgPicture.asset("assets/icons/star.svg"),
+
                         SizedBox(height: 20 / 4),
-                        Text("Rate This", style: Theme.of(context).textTheme.bodyText2),
+
                       ],
                     ),
                     // Metascore
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: Color(0xFF51CF66),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                          child: Text(
-                            '${movie.voteAverage!}',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
+
                         SizedBox(height: 20 / 4),
-                        Text(
-                          "Metascore",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
+                        Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            color: Colors.yellow,
+
+                            child: Padding(padding: EdgeInsets.all(5),
+                              child: Text('IDMB ${movie!.voteAverage}',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            )
+
                         ),
-                        Text(
-                          "${movie.vote_count!} reviews",
-                          style: TextStyle(color: Color(0xFF9A9BB2)),
-                        )
+
                       ],
                     )
                   ],

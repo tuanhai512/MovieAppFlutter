@@ -47,7 +47,6 @@ dependencies:
   dio: ^4.0.6
   equatable: ^2.0.3
   url_launcher: ^6.0.5
-  carousel_slider: ^4.1.1
   flutter_swiper: ^1.1.6
 dev_dependencies:
   build_runner: ^1.12.2
@@ -72,8 +71,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+     - assets/images/nguoinhen.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

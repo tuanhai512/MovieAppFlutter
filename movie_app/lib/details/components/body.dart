@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
             ),
             child: SizedBox(
               height: 64,
-              width: 350,
+               width: 500,
               child: FlatButton(
                 onPressed: () async {
                   final youtubeUrl =
@@ -62,7 +62,6 @@ class Body extends StatelessWidget {
 
           Padding(
             padding: EdgeInsets.symmetric(
-              vertical: 10,
               horizontal: 20,
             ),
             child: Text('${movie.overview}'),

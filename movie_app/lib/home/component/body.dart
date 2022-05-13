@@ -5,6 +5,9 @@ import 'package:movie_app/home/component/fragment/home_fragment.dart';
 import 'package:movie_app/home/component/fragment/notification_fragment.dart';
 import 'package:movie_app/home/component/homeheader.dart';
 import 'package:movie_app/home/component/menuheader.dart';
+import 'package:movie_app/model/movie.dart';
+import 'package:movie_app/constants.dart';
+
 
 class Body extends StatefulWidget {
   @override
@@ -20,16 +23,18 @@ class _BodyState extends State<Body> {
     List<Widget> screen = [
       HomeFrag(),
       FavoriteFrag(),
-      NotificationFrag(),
+      NotificationFrag(Result.data),
      // AccountFrag()
     ];
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor:Colors.pink[300],
         automaticallyImplyLeading: false,
         title: flag ? HomeHeader() : MenuHeader(),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor:Colors.pink[300] ,
         type: BottomNavigationBarType.fixed,
         currentIndex: selectIndex,
         onTap: (index) {
@@ -48,15 +53,15 @@ class _BodyState extends State<Body> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Trang chủ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favorite',
+            label: 'Yêu thích',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notification',
+            icon: Icon(Icons.history),
+            label: 'Lịch sử',
           ),
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.account_circle),

@@ -10,7 +10,7 @@ class Result {
     required this.totalPages,
     required this.totalResults,
   });
-
+  static List<Movie> data = [];
   int? page;
   List<Movie>? results;
   int? totalPages;

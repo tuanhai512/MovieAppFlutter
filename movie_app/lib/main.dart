@@ -4,6 +4,7 @@ import 'package:movie_app/screen/landingPage.dart';
 import 'package:movie_app/home/homepage.dart';
 import 'package:movie_app/signin/signinpage.dart';
 import 'package:movie_app/signup/signuppage.dart';
+import 'package:movie_app/splash/splashpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -25,14 +27,12 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch: Colors.blue,
         ),
         home: HomePage(),
         routes: {
-          Signin.routeName: (context) => Signin(),
+          SplashPage.routeName: (context) => SplashPage(),
           landingPage.routeName: (context) => landingPage(),
           HomePage.routeName: (context) => HomePage(),
-          SignupPage.routeName: (context) => SignupPage(),
           // DetailsScreen.routeName : (context) => DetailsScreen(),
         }
         // home:HomePage(),
