@@ -58,8 +58,7 @@ class Movie {
   Movie(
       {required this.backdropPath,
       required this.id,
-        required this.vote_count,
-
+      required this.vote_count,
       required this.year,
       required this.originalLanguage,
       required this.originalTitle,
