@@ -16,9 +16,9 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 }
-
-class MovieDetailsArguments {
-  final Movie movie;
-
-  MovieDetailsArguments({required this.movie});
-}
+//
+// class MovieDetailsArguments {
+//   final Movie movie;
+//
+//   MovieDetailsArguments({required this.movie});
+// }

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/details/components/genres.dart';
 import '../../model/movie.dart';
 
 class TitleDurationAndFabBtn extends StatelessWidget {
-  const TitleDurationAndFabBtn({  Key? key, required this.movie, }) : super(key: key);
+  const TitleDurationAndFabBtn({  Key? key, required this.movie});
 
   final Movie movie;
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: EdgeInsets.all(20),
       child: Row(
@@ -20,7 +22,9 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                   movie.title?? '',
                   style: Theme.of(context).textTheme.headline5,
                 ),
+                Genres(movie: movie),
                 SizedBox(height: 20 / 2),
+
                 Row(
                   children: <Widget>[
                     Text(
@@ -28,10 +32,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                       style: TextStyle(color: Color(0xFF9A9BB2)),
                     ),
                     SizedBox(width: 20),
-                    Text(
-                      "PG-13",
-                      style: TextStyle(color: Color(0xFF9A9BB2)),
-                    ),
+
                     SizedBox(width: 20),
                     Text(
                       '${movie.popularity}',

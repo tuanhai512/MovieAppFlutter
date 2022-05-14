@@ -4,11 +4,13 @@ import 'package:movie_app/home/component/fragment/favorite_fragment.dart';
 import 'package:movie_app/home/component/fragment/home_fragment.dart';
 import 'package:movie_app/home/component/fragment/notification_fragment.dart';
 import 'package:movie_app/home/component/homeheader.dart';
-import 'package:movie_app/home/component/menuheader.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/constants.dart';
-
-
+import 'package:movie_app/provider/theme_provider.dart';
+import 'package:movie_app/widget/sidebar/body.dart';
+import 'package:movie_app/widget/sidebar/button.dart';
+import 'package:provider/provider.dart';
+import 'package:movie_app/widget/change_theme_button.dart';
 class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
@@ -20,19 +22,26 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+        ? 'DarkTheme'
+        : 'LightTheme';
     List<Widget> screen = [
       HomeFrag(),
       FavoriteFrag(),
       NotificationFrag(Result.data),
      // AccountFrag()
     ];
-
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
       appBar: AppBar(
+
         backgroundColor:Colors.pink[300],
         automaticallyImplyLeading: false,
-        title: flag ? HomeHeader() : MenuHeader(),
-      ),
+          title:  HomeHeader()
+
+        ),
+
+
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor:Colors.pink[300] ,
         type: BottomNavigationBarType.fixed,

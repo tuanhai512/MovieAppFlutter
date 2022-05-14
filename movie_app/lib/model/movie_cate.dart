@@ -1,0 +1,68 @@
+import 'package:json_annotation/json_annotation.dart';
+
+@JsonSerializable(explicitToJson: true)
+
+class Genres {
+  Genres({
+    required this.page,
+    required this.results,
+  });
+  List<Movie_Cate>? results;
+  int page;
+  static List<Movie_Cate> data = [];
+
+  factory Genres.fromJson(Map<String, dynamic>? json) {
+    final results = json?['results'] as List<dynamic>?;
+    if (json == null) {
+      return Genres(results: [],page: 0);
+    }
+
+    return Genres(
+      results: (json['results'] as List<dynamic>?)
+          ?.map((e) => Movie_Cate.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      page: json["page"],
+
+    );
+  }
+  @override
+  String toString() {
+    return 'Movie_Cate{results: $results,page:$page}';
+  }
+}
+
+class Movie_Cate {
+  int? id,vote_count;
+  double? vote_average,popularity;
+  List? genre_ids;
+  String? name,backdrop_path,original_language,original_title,overview,poster_path,release_date,title;
+
+  Movie_Cate({required this.id, required this.name,required this.vote_count,required this.vote_average,required this.popularity,
+  required this.genre_ids,required this.backdrop_path,required this.original_language,required this.original_title,required this.overview,
+  required this.poster_path,required this.release_date,required this.title});
+
+  factory Movie_Cate.fromJson(dynamic json) {
+    if (json == null) {
+      return Movie_Cate(id: 0, name: '',backdrop_path:'',
+          original_language:'',original_title:'',overview:'',poster_path:'',release_date:'',title:'',
+          genre_ids:[],vote_average:0.0,popularity:0.0,vote_count:0);
+    }
+
+    return Movie_Cate(
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      backdrop_path: json['backdrop_path'] as String?,
+      original_language: json['original_language'] as String?,
+      original_title: json['original_title'] as String?,
+      overview: json['overview'] as String?,
+      poster_path: json['poster_path'] as String?,
+      release_date: json['release_date'] as String?,
+      title: json['title'] as String?,
+      genre_ids: json['genre_ids'] as List?,
+      vote_average: json['vote_average'] as double?,
+      vote_count: json['vote_count'] as int?,
+      popularity: json['popularity'] as double?,
+
+    );
+  }
+}

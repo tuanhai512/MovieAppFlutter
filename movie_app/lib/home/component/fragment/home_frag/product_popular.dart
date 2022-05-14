@@ -105,7 +105,6 @@ class MovieItem extends StatelessWidget {
                                 '${movie!.title}',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.black54,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 overflow: TextOverflow.ellipsis,
@@ -139,6 +138,7 @@ class MovieItem extends StatelessWidget {
                                             Text('IDMB ${movie!.voteAverage}',
                                                 style: TextStyle(
                                                   fontSize: 11,
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold,
                                                 )),
                                       )),

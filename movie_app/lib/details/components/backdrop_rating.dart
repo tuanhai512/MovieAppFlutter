@@ -60,7 +60,7 @@ class BackdropAndRating extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        SvgPicture.asset("assets/icons/star_fill.svg"),
+                        Icon(Icons.star,color: Colors.yellow,size: 16,),
                         SizedBox(height: 20 / 4),
                         Column(children: [
                           Text('${movie.voteAverage!}/10'),
