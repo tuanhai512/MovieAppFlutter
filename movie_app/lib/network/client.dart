@@ -12,7 +12,8 @@ class Client {
   var baseUrl = 'https://api.themoviedb.org/3';
 
   Future<http.Response> getPopular() async {
-    var url = Uri.parse("$baseUrl/movie/popular?api_key=$apiKey&language=vi-US&page=1");
+    var url = Uri.parse(
+        "$baseUrl/movie/popular?api_key=$apiKey&language=vi-US&page=1");
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -20,7 +21,8 @@ class Client {
   }
 
   Future<http.Response> getTopRate() async {
-    var url = Uri.parse("$baseUrl/movie/top_rated?api_key=$apiKey&language=vi-US&page=5");
+    var url = Uri.parse(
+        "$baseUrl/movie/top_rated?api_key=$apiKey&language=vi-US&page=5");
     var response = await http.get(url);
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -95,18 +97,22 @@ class Client {
   //   }
   // }
   //
-  // Future<String> getYoutubeId(int id) async {
-  //   try {
-  //     // final response = await _dio.get('$baseUrl/movie/$id/videos?$apiKey');
-  //     var url = Uri.parse('$baseUrl/movie/$id/videos?$apiKey');
-  //     final test="['results'][0]['key']";
-  //     var youtubeId = url.data '${test}';
-  //     return youtubeId;
-  //   } catch (error, stacktrace) {
-  //     throw Exception(
-  //         'Exception accoured: $error with stacktrace: $stacktrace');
-  //   }
-  // }
+  Future<http.Response> getYoutubeId(int id) async {
+    try {
+      // final response = await _dio.get('$baseUrl/movie/$id/videos?$apiKey');
+      var url = Uri.parse(
+          'https://api.themoviedb.org/3/movie/$id/videos?api_key=4ae1e5293ba6fd59113497bcb53718b9&language=en-US');
+      var response = await http.get(url);
+      // var youtubeId =  url.data!['results'][0]['key'];
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      return response;
+    } catch (error, stacktrace) {
+      throw Exception(
+          'Exception accoured: $error with stacktrace: $stacktrace');
+    }
+  }
+
 //  Future<List<Movie>> getNowPlayingMovie() async {
 //     try {
 //       final url = '$baseUrl/movie/now_playing?$apiKey';

@@ -3,7 +3,7 @@ import 'package:movie_app/details/components/genres.dart';
 import '../../model/movie.dart';
 
 class TitleDurationAndFabBtn extends StatelessWidget {
-  const TitleDurationAndFabBtn({  Key? key, required this.movie});
+  const TitleDurationAndFabBtn({  Key key,  this.movie, }) : super(key: key);
 
   final Movie movie;
 

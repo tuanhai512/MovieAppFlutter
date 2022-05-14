@@ -4,7 +4,7 @@ import 'package:movie_app/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   static String routeName = "/details";
-  DetailsScreen({Key? key, required this.movie}) : super(key: key);
+  DetailsScreen({Key key,  this.movie}) : super(key: key);
   final Movie movie;
 
   @override

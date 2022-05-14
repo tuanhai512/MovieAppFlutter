@@ -19,7 +19,7 @@ class _favoritePageState extends State<favoritePage> {
   Client client = Client();
   @override
   Widget build(BuildContext context){
-    return FutureBuilder<Result?>(
+    return FutureBuilder<Result>(
         future: convertFromJsonToModel(client.getPopular()),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -36,8 +36,8 @@ class _favoritePageState extends State<favoritePage> {
               return ListView.builder(
                   itemCount: snapshot.data?.results?.length,
                   itemBuilder: (ctx, index) {
-                    Movie? movie = snapshot.data?.results?[index];
-
+                    Movie movie = snapshot.data?.results[index];
+                  
                     return Card(
                         child: ListTile(
 
@@ -47,7 +47,7 @@ class _favoritePageState extends State<favoritePage> {
                               //print(product.id.toString());
                               // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
                               Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => DetailsScreen(movie: movie!)));
+                                  context, MaterialPageRoute(builder: (context) => DetailsScreen(movie: movie)));
                             },
                             child: Container(
                               child: Image.network('https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
@@ -80,7 +80,7 @@ class _favoritePageState extends State<favoritePage> {
 
 
 
-  Future<Result?> convertFromJsonToModel(Future<http.Response> response) async {
+  Future<Result> convertFromJsonToModel(Future<http.Response> response) async {
     final responseResult = await response;
     if (responseResult.statusCode == 200) {
       final jsMap = jsonDecode(responseResult.body);

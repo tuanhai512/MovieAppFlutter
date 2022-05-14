@@ -27,7 +27,7 @@ class MovieLatest extends StatelessWidget {
   }
 
   Widget carouselCard(context) {
-    return FutureBuilder<Result?>(
+    return FutureBuilder<Result>(
       future: convertFromJsonToModel(client.getTopRate()),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -45,53 +45,56 @@ class MovieLatest extends StatelessWidget {
               itemCount: snapshot.data?.results?.length,
               autoplay: true,
               itemBuilder: (ctx, index) {
-                Movie? movie = snapshot.data?.results?[index];
+                Movie movie = snapshot.data?.results[index];
 
-                return new Stack(children: <Widget>[
+                return new Stack(
+                  children: <Widget>[
                     GestureDetector(
-                    onTap: () {
-                  //print(product.id.toString());
-                  // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              DetailsScreen(movie: movie!)));
-                },
-                    child: Image.network(
-                        'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
-                        fit: BoxFit.fitHeight),),
-
-                  Padding(
-                      padding: EdgeInsets.only(left: 5, top: 100),
-                      child: Text(
-                        movie?.title?.toUpperCase() ?? "",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            fontFamily: "null"),
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.right,
-                      )),
-                  Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      color: Colors.yellow,
-                      margin: EdgeInsets.fromLTRB(180, 80, 0, 0),
-                      child: Container(
-                        margin: EdgeInsets.all(5),
+                      onTap: () {
+                        //print(product.id.toString());
+                        // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailsScreen(movie: movie)));
+                      },
+                      child: Image.network(
+                          'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}',
+                          fit: BoxFit.fitHeight),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(left: 5, top: 100),
                         child: Text(
-                          'IBM: ${movie?.voteAverage}',
+                          movie?.title?.toUpperCase() ?? "",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 8,
+                              fontSize: 12,
                               fontFamily: "null"),
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.right,
+                        )),
+                    
+                    Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
                         ),
-                      ))
-                ]);
+                        color: Colors.yellow,
+                        margin: EdgeInsets.fromLTRB(180, 80, 0, 0),
+                        child: Container(
+                          margin: EdgeInsets.all(5),
+                          child: Text(
+                            'IBM: ${movie?.voteAverage}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 8,
+                                fontFamily: "null"),
+                          ),
+                        ))
+                  ],
+                );
               },
               viewportFraction: 0.7,
               scale: 0.8,
@@ -170,7 +173,7 @@ class MovieLatest extends StatelessWidget {
 //   }
 // }
 
-  Future<Result?> convertFromJsonToModel(Future<http.Response> response) async {
+  Future<Result> convertFromJsonToModel(Future<http.Response> response) async {
     final responseResult = await response;
     if (responseResult.statusCode == 200) {
       final jsMap = jsonDecode(responseResult.body);

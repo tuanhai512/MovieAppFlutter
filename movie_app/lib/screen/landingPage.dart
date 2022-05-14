@@ -29,7 +29,7 @@ class _landingPageState extends State<landingPage> {
       appBar: AppBar(
         title: Text("Movie"),
       ),
-      body: FutureBuilder<Result?>(
+      body: FutureBuilder<Result>(
         future: convertFromJsonToModel(client.getPopular()),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -46,7 +46,7 @@ class _landingPageState extends State<landingPage> {
               return ListView.builder(
                   itemCount: snapshot.data?.results?.length,
                   itemBuilder: (ctx, index) {
-                    Movie? movie = snapshot.data?.results?[index];
+                    Movie movie = snapshot.data?.results[index];
 
                     return Card(
                         child: ListTile(
@@ -57,7 +57,7 @@ class _landingPageState extends State<landingPage> {
                               //print(product.id.toString());
                               // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
                               Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => DetailsScreen(movie: movie!)));
+                                  context, MaterialPageRoute(builder: (context) => DetailsScreen(movie: movie)));
                             },
                             child: Container(
                               child: Image.network('https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
@@ -91,7 +91,7 @@ class _landingPageState extends State<landingPage> {
 
  
 
-  Future<Result?> convertFromJsonToModel(Future<http.Response> response) async {
+  Future<Result> convertFromJsonToModel(Future<http.Response> response) async {
     final responseResult = await response;
     if (responseResult.statusCode == 200) {
       final jsMap = jsonDecode(responseResult.body);

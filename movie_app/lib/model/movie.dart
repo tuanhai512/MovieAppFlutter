@@ -5,19 +5,19 @@ import 'package:json_annotation/json_annotation.dart';
 @JsonSerializable(explicitToJson: true)
 class Result {
   Result({
-    required this.page,
-    required this.results,
-    required this.totalPages,
-    required this.totalResults,
+    this.page,
+    this.results,
+    this.totalPages,
+    this.totalResults,
   });
   static List<Movie> data = [];
-  int? page;
-  List<Movie>? results;
-  int? totalPages;
-  int? totalResults;
+  int page;
+  List<Movie> results;
+  int totalPages;
+  int totalResults;
 
-  factory Result.fromJson(Map<String, dynamic>? json) {
-    final results = json?['results'] as List<dynamic>?;
+  factory Result.fromJson(Map<String, dynamic> json) {
+    final results = json['results'] as List<dynamic>;
     if (json == null) {
       return Result(
           page: null, results: [], totalResults: null, totalPages: null);
@@ -25,7 +25,7 @@ class Result {
 
     return Result(
       page: json["page"],
-      results: (json['results'] as List<dynamic>?)
+      results: (json['results'] as List<dynamic>)
           ?.map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalPages: json["total_pages"],
@@ -40,38 +40,36 @@ class Result {
 }
 
 class Movie {
-  String? backdropPath;
-  int? id,  year,vote_count;
-  String? originalLanguage;
-  String? originalTitle;
-  String? overview;
-  double? popularity;
-  String? posterPath;
-  String? release_date;
-  String? title;
-  List genre_ids;
-  bool? video;
-  int? voteCount;
-  String? voteAverage;
-  String? trailerId;
-  late String error;
+  String backdropPath;
+  int id, year, vote_count;
+  String originalLanguage;
+  String originalTitle;
+  String overview;
+  double popularity;
+  String posterPath;
+  String release_date;
+  String title;
+  bool video;
+  int voteCount;
+  String voteAverage;
+  bool favorite;
+  String error;
 
   Movie(
-      {required this.backdropPath,
-      required this.id,
-        required this.vote_count,
-        required this.genre_ids,
-      required this.year,
-      required this.originalLanguage,
-      required this.originalTitle,
-      required this.overview,
-      required this.popularity,
-      required this.posterPath,
-      required this.release_date,
-      required this.title,
-      required this.video,
-      required this.voteCount,
-      required this.voteAverage});
+      {this.backdropPath,
+      this.id,
+      this.vote_count,
+      this.year,
+      this.originalLanguage,
+      this.originalTitle,
+      this.overview,
+      this.popularity,
+      this.posterPath,
+      this.release_date,
+      this.title,
+      this.video,
+      this.voteCount,
+      this.voteAverage});
 
   factory Movie.fromJson(dynamic json) {
     if (json == null) {
