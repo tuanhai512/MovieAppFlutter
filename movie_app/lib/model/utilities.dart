@@ -33,7 +33,7 @@ class Utilities {
   // }
 
 
-  static String? validatePassword(String value) {
+  static String validatePassword(String value) {
     if (value.isEmpty) {
       return 'Please enter password';
     }
@@ -42,7 +42,7 @@ class Utilities {
     }
   }
 
-  static String? conformPassword(String value, String value2) {
+  static String conformPassword(String value, String value2) {
     if (!equalsIgnoreCase(value, value2)) return "Conform password invalid";
   }
   //

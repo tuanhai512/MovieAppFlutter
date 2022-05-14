@@ -29,7 +29,7 @@ class ProductItemList extends StatelessWidget {
 
   Movie movie;
 
-  ProductItemList({required  this.movie });
+  ProductItemList({this.movie });
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class ProductItemList extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.all(5),
                                 child:
-                                Text('IDMB ${movie!.voteAverage}',
+                                Text('IDMB ${movie.voteAverage}',
                                     style: TextStyle(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,

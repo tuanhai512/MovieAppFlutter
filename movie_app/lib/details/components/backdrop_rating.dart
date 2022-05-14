@@ -4,9 +4,9 @@ import 'package:movie_app/model/movie.dart';
 
 class BackdropAndRating extends StatelessWidget {
   const BackdropAndRating({
-    Key? key,
-    required this.size,
-    required this.movie,
+    Key key,
+     this.size,
+     this.movie,
   }) : super(key: key);
 
   final Size size;
@@ -63,7 +63,7 @@ class BackdropAndRating extends StatelessWidget {
                         SvgPicture.asset("assets/icons/star_fill.svg"),
                         SizedBox(height: 20 / 4),
                         Column(children: [
-                          Text('${movie.voteAverage!}/10'),
+                          Text('${movie.voteAverage}/10'),
                           Row(children: [
                             Icon(Icons.star,color: Colors.yellow,size: 13,),
                             Icon(Icons.star,color: Colors.yellow,size: 13,),
@@ -72,7 +72,7 @@ class BackdropAndRating extends StatelessWidget {
                             Icon(Icons.star_half,color: Colors.yellow,size: 13,),
 
                           ],),Text(
-                            "${movie.vote_count!} đánh giá",
+                            "${movie.vote_count} đánh giá",
                             style: TextStyle(color: Color(0xFF9A9BB2)),
                           )
                         ],)
@@ -101,7 +101,7 @@ class BackdropAndRating extends StatelessWidget {
                             color: Colors.yellow,
 
                             child: Padding(padding: EdgeInsets.all(5),
-                              child: Text('IDMB ${movie!.voteAverage}',
+                              child: Text('IDMB ${movie.voteAverage}',
                                   style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.bold,

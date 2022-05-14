@@ -23,7 +23,7 @@ class _SignUpFormState extends State<SignUpForm> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', _username);
     prefs.setString('password', _password);
-     return Navigator.of(context).pushNamed(Signin.routeName);
+    return Navigator.of(context).pushNamed(Signin.routeName);
     //flutter run --no-sound-null-safety
   }
 
@@ -41,7 +41,6 @@ class _SignUpFormState extends State<SignUpForm> {
                 TextButton(
                   onPressed: () {
                     funcSaveInfo(strUserName, strPassword);
-
                   },
                   child: Text('OK'),
                 ),
@@ -93,8 +92,8 @@ class _SignUpFormState extends State<SignUpForm> {
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     suffixIcon: Icon(Icons.email_outlined)),
                 validator: (conformPassword) {
-                  var pass = _passKey.currentState!.value;
-                  return Utilities.conformPassword(conformPassword!, pass);
+                  var pass = _passKey.currentState.value;
+                  return Utilities.conformPassword(conformPassword, pass);
                 },
               ),
             ),
@@ -115,7 +114,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       suffixIcon: Icon(Icons.lock_outline)),
                   validator: (passwordKey) {
-                    return Utilities.validatePassword(passwordKey!);
+                    return Utilities.validatePassword(passwordKey);
                   }),
             ),
             SizedBox(

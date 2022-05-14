@@ -21,7 +21,7 @@ class _SigninFormState extends State<SigninForm> {
   var prefs;
   final username = TextEditingController();
   final password = TextEditingController();
-   late FToast fToast;
+    FToast fToast;
   @override
   void initState() {
     // TODO: implement initState
@@ -45,8 +45,8 @@ class _SigninFormState extends State<SigninForm> {
     final strPassword = password.text;
     // get info from sharereference
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? reUsername = prefs.getString('username');
-    String? rePassword = prefs.getString('password');
+    String reUsername = prefs.getString('username');
+    String rePassword = prefs.getString('password');
     //
     if (strUserName == reUsername && strPassword == rePassword) {
       // Navigator.of(context).pushReplacementNamed(landingPage.routeName);
@@ -113,7 +113,7 @@ class _SigninFormState extends State<SigninForm> {
                     TextFormField(
                       onSaved: (_value) {
                         setState(() {
-                          username.text = _value!;
+                          username.text = _value;
                         });
                       },
                       controller: username,

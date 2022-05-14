@@ -56,7 +56,7 @@ class MovieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Result?>(
+    return FutureBuilder<Result>(
       future: convertFromJsonToModel(client.getUpComing()),
       builder: (BuildContext context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -74,7 +74,7 @@ class MovieItem extends StatelessWidget {
                 itemCount: snapshot.data?.results?.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (ctx, index) {
-                  Movie? movie = snapshot.data?.results?[index];
+                  Movie movie = snapshot.data?.results[index];
 
                   return Card(
                     shape: RoundedRectangleBorder(
@@ -87,7 +87,7 @@ class MovieItem extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      DetailsScreen(movie: movie!)));
+                                      DetailsScreen(movie: movie)));
                         },
                         child: Column(
                           children: [
@@ -102,7 +102,7 @@ class MovieItem extends StatelessWidget {
                             Container(
                               width: 150,
                               child: Text(
-                                '${movie!.title}',
+                                '${movie.title}',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black54,
@@ -120,7 +120,7 @@ class MovieItem extends StatelessWidget {
                                     size: 14,
                                   ),
                                   Text(
-                                    '${movie!.voteAverage}',
+                                    '${movie.voteAverage}',
                                     style: TextStyle(
                                       color: Colors.yellow,
                                     ),
@@ -136,7 +136,7 @@ class MovieItem extends StatelessWidget {
                                       child: Padding(
                                         padding: EdgeInsets.all(5),
                                         child:
-                                        Text('IDMB ${movie!.voteAverage}',
+                                        Text('IDMB ${movie.voteAverage}',
                                             style: TextStyle(
                                               fontSize: 11,
                                               fontWeight: FontWeight.bold,
@@ -196,7 +196,7 @@ class MovieItem extends StatelessWidget {
   }
 }
 
-Future<Result?> convertFromJsonToModel(Future<http.Response> response) async {
+Future<Result> convertFromJsonToModel(Future<http.Response> response) async {
   final responseResult = await response;
   if (responseResult.statusCode == 200) {
     final jsMap = jsonDecode(responseResult.body);
