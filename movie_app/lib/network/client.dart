@@ -28,7 +28,7 @@ class Client {
     print('Response body: ${response.body}');
     return response;
   }
-  Future<List<Movie>> getmovieList({String? query}) async {
+  Future<List<Movie>> getmovieList({String query}) async {
     var url = Uri.parse("$baseUrl/movie/popular?api_key=$apiKey&language=vi-US&page=5");
     try {
       var response = await http.get(url);
@@ -37,7 +37,7 @@ class Client {
         data = json.decode(response.body);
         results = data.map((e) => Movie.fromJson(e)).toList();
         if (query!= null){
-          results = results.where((element) => element.originalLanguage!.toLowerCase().contains((query.toLowerCase()))).toList();
+          results = results.where((element) => element.originalLanguage.toLowerCase().contains((query.toLowerCase()))).toList();
         }
       } else {
         print("fetch error");

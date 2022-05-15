@@ -6,10 +6,10 @@ class ButtonWidget extends StatelessWidget {
   final VoidCallback onClicked;
 
   const ButtonWidget({
-    Key? key,
-    required this.icon,
-    required this.text,
-    required this.onClicked,
+    Key key,
+     this.icon,
+     this.text,
+     this.onClicked,
   }) : super(key: key);
 
   @override

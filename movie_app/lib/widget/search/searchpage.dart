@@ -40,7 +40,7 @@ class SearchMovie extends SearchDelegate {
               child: CircularProgressIndicator(),
             );
           }
-          List<Movie>? data = snapshot.data;
+          List<Movie> data = snapshot.data;
           return ListView.builder(
               itemCount: data?.length,
               itemBuilder: (context, index) {
@@ -56,7 +56,7 @@ class SearchMovie extends SearchDelegate {
                         ),
                         child: Center(
                           child: Text(
-                            '${data?[index].voteAverage}',
+                            '${data[index].voteAverage}',
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -70,13 +70,13 @@ class SearchMovie extends SearchDelegate {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${data?[index].title}',
+                              '${data[index].title}',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(height: 10),
                             Text(
-                              '${data?[index].voteAverage}',
+                              '${data[index].voteAverage}',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,

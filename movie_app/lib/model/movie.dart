@@ -54,10 +54,11 @@ class Movie {
   String voteAverage;
   bool favorite;
   String error;
-
+  List genre_ids;
   Movie(
       {this.backdropPath,
       this.id,
+        this.genre_ids,
       this.vote_count,
       this.year,
       this.originalLanguage,
@@ -93,20 +94,20 @@ class Movie {
 
     return Movie(
         genre_ids:json['genre_ids'] as List,
-        backdropPath: json['backdrop_path'] as String?,
-        id: json['id'] as int?,
-        vote_count: json['vote_count'] as int?,
-        year: json['year'] as int?,
-        originalLanguage: json['original_language'] as String?,
-        originalTitle: json['original_title'] as String?,
-        overview: json['overview'] as String?,
-        popularity: json['popularity'] as double?,
-        posterPath: json['poster_path'] as String?,
-        release_date: json['release_date'] as String?,
-        title: json['title'] as String?,
-        video: json['video'] as bool?,
-        voteCount: json['vote_count'] as int?,
-        voteAverage: json['vote_average'].toString() as String?);
+        backdropPath: json['backdrop_path'] as String,
+        id: json['id'] as int,
+        vote_count: json['vote_count'] as int,
+        year: json['year'] as int,
+        originalLanguage: json['original_language'] as String,
+        originalTitle: json['original_title'] as String,
+        overview: json['overview'] as String,
+        popularity: json['popularity'] as double,
+        posterPath: json['poster_path'] as String,
+        release_date: json['release_date'] as String,
+        title: json['title'] as String,
+        video: json['video'] as bool,
+        voteCount: json['vote_count'] as int,
+        voteAverage: json['vote_average'].toString() as String);
   }
 }
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CastCard extends StatelessWidget {
   final Map cast;
 
-  const CastCard({Key? key,required this.cast}) : super(key: key);
+  const CastCard({Key key, this.cast}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -4,7 +4,7 @@ import 'package:movie_app/model/movie_cate.dart';
 import '../../model/movie.dart';
 
 class Genres extends StatelessWidget {
-  const Genres({  Key? key, required this.movie
+  const Genres({  Key key,  this.movie
     // ,required this.category
   }) : super(key: key);
 // final Movie_Cate category;

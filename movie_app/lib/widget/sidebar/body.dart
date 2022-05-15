@@ -48,7 +48,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   child:
                       // padding:  EdgeInsets.symmetric(horizontal: 20) ,
                       // child:
-                      FutureBuilder<Genres?>(
+                      FutureBuilder<Genres>(
                           future: convertFromJsonToModel(client.getCategory()),
                           builder: (BuildContext context, snapshot) {
                             if (snapshot.connectionState ==
@@ -65,27 +65,28 @@ class NavigationDrawerWidget extends StatelessWidget {
                               } else {
                                 return ListView.builder(
                                   padding:padding ,
-                                    itemCount: snapshot.data?.genres?.length,
+                                    itemCount: snapshot.data.genres.length,
                                     scrollDirection: Axis.vertical,
                                     itemBuilder: (ctx, index) {
                                       Category cate =
-                                          snapshot.data!.genres![index];
+                                          snapshot.data.genres[index];
+
                                       return Column(
                                         children: [
                                           const SizedBox(height: 12),
                                           GestureDetector(
-                                            // onTap: () {
-                                            //   //print(product.id.toString());
-                                            //   // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                                            //   Navigator.push(
-                                            //       context,
-                                            //       MaterialPageRoute(
-                                            //           builder: (context) =>
-                                            //               Cate_Movie(
-                                            //                 movie_cate:movie_cate,
-                                            //                 id: 0,
-                                            //               )));
-                                            // },
+                                            onTap: () {
+                                              //print(product.id.toString());
+                                              // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Cate_Movie(
+                                                            // movie_cate:cate.id,
+                                                            id: cate.id  ,
+                                                          )));
+                                            },
                                             child: Row(children: [
                                               Icon(
                                                 Icons.movie,
@@ -141,7 +142,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   }
 }
 
-Future<Genres?> convertFromJsonToModel(Future<http.Response> response) async {
+Future<Genres> convertFromJsonToModel(Future<http.Response> response) async {
   final responseResult = await response;
   if (responseResult.statusCode == 200) {
     final jsMap = jsonDecode(responseResult.body);

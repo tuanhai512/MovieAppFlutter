@@ -5,7 +5,7 @@ import 'cast_card.dart';
 class CastAndCrew extends StatelessWidget {
   final List casts;
 
-  const CastAndCrew({Key? key,required this.casts}) : super(key: key);
+  const CastAndCrew({Key key, this.casts}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

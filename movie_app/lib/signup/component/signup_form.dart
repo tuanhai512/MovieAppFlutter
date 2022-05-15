@@ -92,7 +92,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     suffixIcon: Icon(Icons.email_outlined)),
                 validator: (conformPassword) {
                   var pass = _passKey.currentState.value;
-                  return Utilities.conformPassword(conformPassword, pass);
+                  // return conformPassword(conformPassword, pass);
                 },
               ),
             ),
@@ -113,7 +113,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       suffixIcon: Icon(Icons.lock_outline)),
                   validator: (passwordKey) {
-                    return validatePassword(passwordKey!);
+                    return validatePassword(passwordKey);
                   }),
             ),
             SizedBox(
@@ -197,7 +197,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  static String? validatePassword(String value) {
+  static String validatePassword(String value) {
     if (value.isEmpty) {
       return 'Please enter password';
     }
@@ -206,7 +206,7 @@ class _SignUpFormState extends State<SignUpForm> {
     }
   }
 
-  static String? conformPassword(String value, String value2) {
+  static String conformPassword(String value, String value2) {
     if (!equalsIgnoreCase(value, value2)) return "Conform password invalid";
   }
   //
