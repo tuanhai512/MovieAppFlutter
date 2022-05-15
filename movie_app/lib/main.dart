@@ -9,7 +9,7 @@ import 'package:movie_app/signup/signuppage.dart';
 
 import 'package:provider/provider.dart';
 import 'package:movie_app/splash/splashpage.dart';
-import 'package:movie_app/provider/theme_provider.dart';
+import 'package:movie_app/widget/provider/theme_provider.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

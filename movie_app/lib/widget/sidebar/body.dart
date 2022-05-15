@@ -5,8 +5,9 @@ import 'package:movie_app/home/component/fragment/home_frag/category_movie.dart'
 import 'package:movie_app/model/category.dart';
 import 'package:movie_app/network/client.dart';
 import 'package:movie_app/widget/change_theme_button.dart';
+import 'package:movie_app/widget/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
-import '../../provider/theme_provider.dart';
+import '../../constants.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
@@ -25,7 +26,7 @@ class NavigationDrawerWidget extends StatelessWidget {
 
     return Drawer(
         child: Material(
-            color: Color.fromRGBO(50, 75, 205, 1),
+            color: backgroundH,
             child: Column(
               children: [
                 Row(

@@ -18,13 +18,7 @@ class FavoriteFrag extends StatelessWidget {
     // print(products.length.toString());
     return Expanded(
         child: Column(
-           children:[ ButtonWidget(
-              icon: Icons.open_in_new,
-              text: 'Open Drawer',
-              onClicked: () {
-                Scaffold.of(context).openDrawer();
-              },
-            ),
+           children:[
            ],
           ),
 

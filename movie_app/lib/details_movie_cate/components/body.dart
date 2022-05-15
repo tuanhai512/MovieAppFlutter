@@ -5,29 +5,28 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
-import 'package:movie_app/details/components/title_duration_and_fav_btn.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
-import 'package:movie_app/model/movie.dart';
+import 'package:movie_app/model/movie_cate.dart';
 import 'package:movie_app/model/movieDetail.dart';
 import 'package:movie_app/widget/playVideo/components/video.dart';
-
+import 'title_duration_and_fav_btn.dart';
 
 class Body extends StatelessWidget {
-  final Movie movie;
+  final Movie_Cate movie_cate;
 
-  const Body({Key key, this.movie}) : super(key: key);
+  const Body({Key key, this.movie_cate}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // it will provide us total height and width
-    client.getYoutubeId(movie.id);
-    print(client.getYoutubeId(movie.id));
+    client.getYoutubeId(movie_cate.id);
+    print(client.getYoutubeId(movie_cate.id));
     // print(MovieDetail);
 
     Size size = MediaQuery.of(context).size;
 
     return FutureBuilder<ResultDetail>(
-      future: convertFromJsonToModel(client.getYoutubeId(movie.id)),
+      future: convertFromJsonToModel(client.getYoutubeId(movie_cate.id)),
       // ignore: missing_return
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -63,7 +62,7 @@ class Body extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w500${movie.backdropPath ?? movie.posterPath ?? ''}'),
+                                      'https://image.tmdb.org/t/p/w500${movie_cate.backdrop_path ?? movie_cate.poster_path ?? ''}'),
                                 ),
                               ),
                             ),
@@ -105,7 +104,7 @@ class Body extends StatelessWidget {
                                           SizedBox(height: 20 / 4),
                                           Column(
                                             children: [
-                                              Text('${movie.voteAverage}/10'),
+                                              Text('${movie_cate.vote_average}/10'),
                                               Row(
                                                 children: [
                                                   Icon(
@@ -136,7 +135,7 @@ class Body extends StatelessWidget {
                                                 ],
                                               ),
                                               Text(
-                                                "${movie.vote_count} đánh giá",
+                                                "${movie_cate.vote_count} đánh giá",
                                                 style: TextStyle(
                                                     color: Color(0xFF9A9BB2)),
                                               )
@@ -167,7 +166,7 @@ class Body extends StatelessWidget {
                                               child: Padding(
                                                 padding: EdgeInsets.all(5),
                                                 child: Text(
-                                                    'IDMB ${movie.voteAverage}',
+                                                    'IDMB ${movie_cate.vote_average}',
                                                     style: TextStyle(
                                                       fontSize: 11,
                                                       fontWeight:
@@ -195,7 +194,7 @@ class Body extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => Video(
-                                              title: movie.title,
+                                              title: movie_cate.title,
                                               url: youtubeUrl)));
                                 },
                                 child: Center(
@@ -214,7 +213,7 @@ class Body extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20 / 2),
-                      TitleDurationAndFabBtn(movie: movie),
+                      TitleDurationAndFabBtn(movie_cate: movie_cate),
                       Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 20 / 2,
@@ -235,7 +234,7 @@ class Body extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Video(
-                                          title: movie.title,
+                                          title: movie_cate.title,
                                           url: youtubeUrl)));
                             },
                             color: Color(0xFFFE6D8E),
@@ -264,7 +263,7 @@ class Body extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: 20,
                         ),
-                        child: Text('${movie.overview ?? ""}'),
+                        child: Text('${movie_cate.overview ?? ""}'),
                       )
 
                       // CastAndCrew(casts: movie.cast),
