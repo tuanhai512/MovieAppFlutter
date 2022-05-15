@@ -105,7 +105,6 @@ class MovieItem extends StatelessWidget {
                                 '${movie.title}',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.black54,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 overflow: TextOverflow.ellipsis,

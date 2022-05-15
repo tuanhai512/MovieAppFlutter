@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:movie_app/model/utilities.dart';
+import 'package:quiver/strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../signin/signinpage.dart';
@@ -93,7 +92,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     suffixIcon: Icon(Icons.email_outlined)),
                 validator: (conformPassword) {
                   var pass = _passKey.currentState.value;
-                  return Utilities.conformPassword(conformPassword, pass);
+                  // return conformPassword(conformPassword, pass);
                 },
               ),
             ),
@@ -114,7 +113,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       suffixIcon: Icon(Icons.lock_outline)),
                   validator: (passwordKey) {
-                    return Utilities.validatePassword(passwordKey);
+                    return validatePassword(passwordKey);
                   }),
             ),
             SizedBox(
@@ -196,6 +195,19 @@ class _SignUpFormState extends State<SignUpForm> {
         ),
       ),
     );
+  }
+
+  static String validatePassword(String value) {
+    if (value.isEmpty) {
+      return 'Please enter password';
+    }
+    if (value.length < 8) {
+      return 'Password should be more than 8 characters ';
+    }
+  }
+
+  static String conformPassword(String value, String value2) {
+    if (!equalsIgnoreCase(value, value2)) return "Conform password invalid";
   }
   //
   // TextFormField emailTextFormField() {

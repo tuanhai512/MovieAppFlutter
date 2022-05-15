@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/home/component/fragment/home_frag/categories_store.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_upcoming.dart';
 import 'package:movie_app/home/component/fragment/home_frag/product_popular.dart';

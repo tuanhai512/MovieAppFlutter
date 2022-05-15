@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/widget/sidebar/body.dart';
+import 'package:movie_app/widget/sidebar/button.dart';
+
+import '../../widget/search/searchpage.dart';
 
 class HomeHeader extends StatelessWidget {
   @override
@@ -6,15 +10,23 @@ class HomeHeader extends StatelessWidget {
     return Row(
        mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
-          child: TextField(
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: "Tên phim.....",)
-                // prefixIcon: Icon(Icons.search)),
-          ),
-        ),SizedBox(child: Icon(Icons.search),width: 60,)
+        IconButton(
+        onPressed: () {
+          showSearch(context: context, delegate: SearchMovie());
+        },
+        icon: Icon(Icons.search_sharp),
+      ),
+
+        // Expanded(
+        //   child: TextField(
+        //     decoration: InputDecoration(
+        //         filled: true,
+        //         fillColor: Colors.white,
+        //         hintText: "Tên phim.....",
+        //     )
+        //         // prefixIcon: Icon(Icons.search)),
+        //   ),
+        // ),
         // GestureDetector(
         //   child: Container(
         //       height: 40,
