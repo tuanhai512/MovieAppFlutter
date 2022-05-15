@@ -10,11 +10,10 @@ class FavoriteFrag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // print(products.length.toString());
-   return Scaffold(
+    return Scaffold(
         appBar: AppBar(
-        title: Text("Movie"),
-    ),
-    body:favoritePage()
-   );
+          title: Text("Movie"),
+        ),
+        body: favoritePage());
   }
 }

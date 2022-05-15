@@ -13,7 +13,6 @@ import 'package:movie_app/network/client.dart';
 import 'package:movie_app/playVideo/components/video.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'backdrop_rating.dart';
 // import 'cast_and_crew.dart';
 import 'title_duration_and_fav_btn.dart';
 
