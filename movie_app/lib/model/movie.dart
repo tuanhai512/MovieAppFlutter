@@ -52,13 +52,13 @@ class Movie {
   bool video;
   int voteCount;
   String voteAverage;
-  bool favorite;
+  bool status = false;
   String error;
   List genre_ids;
   Movie(
       {this.backdropPath,
       this.id,
-        this.genre_ids,
+      this.genre_ids,
       this.vote_count,
       this.year,
       this.originalLanguage,
@@ -75,7 +75,7 @@ class Movie {
   factory Movie.fromJson(dynamic json) {
     if (json == null) {
       return Movie(
-          genre_ids:[],
+          genre_ids: [],
           vote_count: 0,
           backdropPath: '',
           id: 0,
@@ -93,7 +93,7 @@ class Movie {
     }
 
     return Movie(
-        genre_ids:json['genre_ids'] as List,
+        genre_ids: json['genre_ids'] as List,
         backdropPath: json['backdrop_path'] as String,
         id: json['id'] as int,
         vote_count: json['vote_count'] as int,
