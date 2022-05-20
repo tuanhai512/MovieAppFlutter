@@ -1,4 +1,4 @@
-import 'dart:js';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,8 +37,8 @@ class Favorite extends StatelessWidget {
       return MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-          theme: MyThemes.lightTheme,
-          darkTheme: MyThemes.darkTheme,
+        
+         
           home: HomePage(),
           routes: {
             SplashPage.routeName: (context) => SplashPage(),

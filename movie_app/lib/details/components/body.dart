@@ -11,8 +11,9 @@ import 'package:movie_app/model/item_model_fav.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/model/movieDetail.dart';
 import 'package:movie_app/network/client.dart';
-import 'package:movie_app/playVideo/components/video.dart';
+
 import 'package:movie_app/provider/favorite_provider.dart';
+import 'package:movie_app/widget/playVideo/components/video.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -286,7 +287,7 @@ class Body extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: snapshot.data?.results?.length > 2 ? 1 : 0,
+              itemCount: snapshot.data?.results?.length > 2 ? 1 : 1,
             );
           }
         }

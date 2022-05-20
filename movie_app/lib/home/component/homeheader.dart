@@ -8,27 +8,24 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-       mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(child:  ButtonWidget(
-          icon: Icons.open_in_new,
-          text: 'Open Drawer',
-          onClicked: () {
-            Scaffold.of(context).openDrawer();
-          },
-        ),),
-
-        SizedBox(
-            // width: 400
+        Expanded(
+          child: ButtonWidget(
+            onClicked: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
         ),
-        Expanded(child:  IconButton(
-          onPressed: () {
-            showSearch(context: context, delegate: SearchMovie());
-          },
-          icon: Icon(Icons.search_sharp),
-        ),),
 
-
+        Expanded(
+          child: IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: SearchMovie());
+            },
+            icon: Icon(Icons.search_sharp),
+          ),
+        ),
 
         // Expanded(
         //   child: TextField(
