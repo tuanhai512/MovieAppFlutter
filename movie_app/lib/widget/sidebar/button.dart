@@ -25,11 +25,7 @@ class ButtonWidget extends StatelessWidget {
     mainAxisSize: MainAxisSize.min,
     children: [
       Icon(icon, size: 28),
-      SizedBox(width: 16),
-      Text(
-        text,
-        style: TextStyle(fontSize: 22, color: Colors.white),
-      ),
+
     ],
   );
 }

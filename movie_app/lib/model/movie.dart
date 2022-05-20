@@ -107,7 +107,7 @@ class Movie {
         title: json['title'] as String,
         video: json['video'] as bool,
         voteCount: json['vote_count'] as int,
-        voteAverage: json['vote_average'].toString() as String);
+        voteAverage: json['vote_average'].toString() as String );
   }
 }
 

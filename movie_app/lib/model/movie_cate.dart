@@ -33,7 +33,9 @@ class Genres {
 
 class Movie_Cate {
   int id,vote_count;
-  double vote_average,popularity;
+  double
+  vote_average,
+      popularity;
   List genre_ids;
   String name,backdrop_path,original_language,original_title,overview,poster_path,release_date,title;
 

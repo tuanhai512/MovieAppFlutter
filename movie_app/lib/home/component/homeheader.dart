@@ -11,16 +11,12 @@ class HomeHeader extends StatelessWidget {
        mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(child:  ButtonWidget(
-          icon: Icons.open_in_new,
-          text: 'Open Drawer',
+          icon: Icons.category_outlined,
           onClicked: () {
             Scaffold.of(context).openDrawer();
           },
         ),),
-
-        SizedBox(
-            // width: 400
-        ),
+        //
         Expanded(child:  IconButton(
           onPressed: () {
             showSearch(context: context, delegate: SearchMovie());

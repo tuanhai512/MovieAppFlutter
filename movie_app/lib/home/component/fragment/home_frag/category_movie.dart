@@ -7,6 +7,7 @@ import 'package:movie_app/details_movie_cate/page.dart';
 import 'package:movie_app/home/component/homeheader.dart';
 import 'package:movie_app/model/movie_cate.dart';
 import 'package:movie_app/network/client.dart';
+import 'package:movie_app/widget/search/searchpage.dart';
 
 import '../../../../constants.dart';
 
@@ -24,7 +25,12 @@ class Cate_Movie extends StatelessWidget {
     Client client = Client();
     return Scaffold(
       appBar: AppBar(
-        title: HomeHeader(),
+        actions: [IconButton(
+          onPressed: () {
+            showSearch(context: context, delegate: SearchMovie());
+          },
+          icon: Icon(Icons.search_sharp),
+        ),],
         backgroundColor: backgroundH,
       ),
       body: (FutureBuilder<Genres>(
@@ -87,7 +93,7 @@ class Cate_Movie extends StatelessWidget {
                             child: Container(
                               margin: EdgeInsets.all(5),
                               child: Text(
-                                'IBM: ${movie_cate?.vote_average}',
+                                'IBM: ${movie_cate?.original_language}',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
