@@ -6,11 +6,11 @@ import 'package:movie_app/home/component/fragment/notification_fragment.dart';
 import 'package:movie_app/home/component/homeheader.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/constants.dart';
-import 'package:movie_app/provider/theme_provider.dart';
+import 'package:movie_app/widget/provider/theme_provider.dart';
 import 'package:movie_app/widget/sidebar/body.dart';
-import 'package:movie_app/widget/sidebar/button.dart';
 import 'package:provider/provider.dart';
-import 'package:movie_app/widget/change_theme_button.dart';
+
+import '../../constants.dart';
 class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
@@ -35,7 +35,7 @@ class _BodyState extends State<Body> {
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
 
-        backgroundColor:Colors.pink[300],
+        backgroundColor:backgroundH,
         automaticallyImplyLeading: false,
           title:  HomeHeader()
 
@@ -43,7 +43,7 @@ class _BodyState extends State<Body> {
 
 
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor:Colors.pink[300] ,
+        selectedItemColor:backgroundH ,
         type: BottomNavigationBarType.fixed,
         currentIndex: selectIndex,
         onTap: (index) {

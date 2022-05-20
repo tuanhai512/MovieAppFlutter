@@ -8,6 +8,7 @@ import 'package:movie_app/screen/landingPage.dart';
 import 'package:movie_app/home/homepage.dart';
 import 'package:movie_app/signin/signinpage.dart';
 import 'package:movie_app/signup/signuppage.dart';
+import 'package:movie_app/widget/provider/theme_provider.dart';
 
 import 'package:provider/provider.dart';
 import 'package:movie_app/splash/splashpage.dart';

@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-import 'package:movie_app/details/details_screen.dart';
+import 'package:movie_app/details_movie_cate/page.dart';
 import 'package:movie_app/home/component/homeheader.dart';
 import 'package:movie_app/model/movie_cate.dart';
 import 'package:movie_app/network/client.dart';
+
+import '../../../../constants.dart';
 
 class Cate_Movie extends StatelessWidget {
   static String routeName = "/cate_movie";
@@ -22,6 +25,7 @@ class Cate_Movie extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: HomeHeader(),
+        backgroundColor: backgroundH,
       ),
       body: (FutureBuilder<Genres>(
         future: convertFromJsonToModel(client.getMoviebyCategory(id)),
@@ -37,6 +41,7 @@ class Cate_Movie extends StatelessWidget {
                 child: Text("Empty"),
               );
             } else {
+
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -47,39 +52,58 @@ class Cate_Movie extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (ctx, index) {
                   Movie_Cate movie_cate = snapshot.data.results[index];
-                  return Column(
-                    children: [
-                      // const SizedBox(height: 16),
-                      Container(
-                        height:200,
-                          width:200,
-                          decoration: BoxDecoration(
-                        // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              'https://image.tmdb.org/t/p/w500${movie_cate.backdrop_path ?? movie_cate.poster_path ?? ''}'),
-                        ),
-                      )),
-                      // GestureDetector(
-                      //   onTap: () {
-                      //     //print(product.id.toString());
-                      //     // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                      //     Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //             builder: (context) =>
-                      //                 DetailsScreen(movie: movie_cate)));
-                      //   }
-                      //    ,child:
+                  return Container(
+                        height: 260,
+                    child:Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0)),
+                    child:
+                        GestureDetector(
+                          onTap: () {
+                          Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailsScreen(movie_cate: movie_cate)));
+                          },
+                          child:
+                          Column(
+                              children: [
+                              Container(
+                              height:170,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(20)),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                      'https://image.tmdb.org/t/p/w500${movie_cate.backdrop_path ?? movie_cate.poster_path ?? ''}'),
+                                ),
+                              )),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            color: Colors.yellow,
+                            child: Container(
+                              margin: EdgeInsets.all(5),
+                              child: Text(
+                                'IBM: ${movie_cate?.vote_average}',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 8,
+                                    fontFamily: "null"),
+                              ),
+                            )),
+                        Text('${movie_cate.title}'),
+]
+                    ))
 
-                      Text('IDMB: ${movie_cate.vote_average}'),
+                    //   ],
+                    // ),
+                  ) ,)
+                    ;
 
-                      Text('${movie_cate.title}'),
-
-                      // ),
-                    ],
-                  );
 
                   // GestureDetector(
                   //   onTap: () {

@@ -78,7 +78,7 @@ class MovieItem extends StatelessWidget {
 
                   return Card(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.0)),
+                        borderRadius: BorderRadius.circular(15.0)),
                     child: GestureDetector(
                         onTap: () {
                           //print(product.id.toString());
