@@ -30,10 +30,13 @@ class NavigationDrawerWidget extends StatelessWidget {
             child: Column(
               children: [
                 Row(
+                  
                   children: [
+                    
                     Expanded(child:  Text('Change Theme',style: TextStyle(
                       fontSize: 15,
                       color: Colors.white,
+                      
                     )))
                    , Expanded(child: SizedBox(width: 0,))
                     ,ChangeThemeButtonWidget()],

@@ -7,10 +7,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
 import 'package:movie_app/details/components/title_duration_and_fav_btn.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
+import 'package:movie_app/model/item_model_fav.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/model/movieDetail.dart';
-import 'package:movie_app/widget/playVideo/components/video.dart';
+import 'package:movie_app/network/client.dart';
 
+import 'package:movie_app/provider/favorite_provider.dart';
+import 'package:movie_app/widget/playVideo/components/video.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// import 'cast_and_crew.dart';
+import 'title_duration_and_fav_btn.dart';
 
 class Body extends StatelessWidget {
   final Movie movie;
@@ -20,6 +28,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // it will provide us total height and width
+    var bookMark = Provider.of<FavoriteProvider>(context);
+
     client.getYoutubeId(movie.id);
     print(client.getYoutubeId(movie.id));
     // print(MovieDetail);
@@ -222,21 +232,26 @@ class Body extends StatelessWidget {
                         ),
                         child: SizedBox(
                           height: 64,
-                          width: 500,
+                          width: 50,
                           child: FlatButton(
-                            onPressed: () async {
-                              final youtubeUrl =
-                                  "https://www.youtube.com/watch?v=${movieDetail.key}}";
-                              // print("MDT ${movieDetail.key}");
-                              // if (await canLaunch(youtubeUrl)) {
-                              //   launch(youtubeUrl);
-                              // }
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Video(
-                                          title: movie.title,
-                                          url: youtubeUrl)));
+                            onPressed: () {
+                              if (movieDetail.status == false) {
+                                ItemModel itemModel = new ItemModel(
+                                    title: movie.title,
+                                    backdropPath: movie.backdropPath ??
+                                        movie.posterPath ??
+                                        '');
+                                bookMark.addItem(itemModel);
+                                setState(() {
+                                  movieDetail.status = true;
+                                  bookMark.itemList[index].status == true;
+                                });
+                              } else {
+                                setState(() {
+                                  movie.status = false;
+                                  bookMark.itemList[index].status == false;
+                                });
+                              }
                             },
                             color: Color(0xFFFE6D8E),
                             shape: RoundedRectangleBorder(
@@ -272,7 +287,7 @@ class Body extends StatelessWidget {
                   ),
                 );
               },
-              itemCount: snapshot.data?.results?.length > 2 ? 1 : 0,
+              itemCount: snapshot.data?.results?.length > 2 ? 1 : 1,
             );
           }
         }
@@ -297,4 +312,6 @@ class Body extends StatelessWidget {
     }
     return null;
   }
+
+  void setState(Null Function() param0) {}
 }

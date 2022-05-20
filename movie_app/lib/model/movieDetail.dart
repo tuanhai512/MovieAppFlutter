@@ -45,7 +45,7 @@ class MovieDetail {
   String published_at;
   String id;
   int size;
-
+  bool status = false;
   MovieDetail(
       {this.id,
       this.iso_3166_1,
