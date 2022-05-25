@@ -5,8 +5,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
+import 'package:movie_app/details/components/cast.dart';
 import 'package:movie_app/details/components/title_duration_and_fav_btn.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
+import 'package:movie_app/model/cast_in_movie.dart';
 import 'package:movie_app/model/item_model_fav.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/model/movieDetail.dart';
@@ -29,8 +31,10 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     // it will provide us total height and width
     var bookMark = Provider.of<FavoriteProvider>(context);
-
+    client.getCastInMovie(movie.id);
     client.getYoutubeId(movie.id);
+    // Cast cast;
+    // cast.id=movie.id;
     print(client.getYoutubeId(movie.id));
     // print(MovieDetail);
 
@@ -225,6 +229,11 @@ class Body extends StatelessWidget {
                       ),
                       SizedBox(height: 20 / 2),
                       TitleDurationAndFabBtn(movie: movie),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        height: 200,
+                        child: ListCast(id: movie.id),
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 20 / 2,

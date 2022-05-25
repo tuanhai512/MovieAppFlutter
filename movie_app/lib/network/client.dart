@@ -76,6 +76,13 @@ class Client {
     print('Response body: ${response.body}');
     return response;
   }
+  Future<http.Response> getCastInMovie(int id) async {
+    var url = Uri.parse("$baseUrl/movie/$id/credits?api_key=$apiKey&language=en-US");
+    var response = await http.get(url);
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    return response;
+  }
   //
   // Future<Movie> getMovieDetail(int movieId) async {
   //   try {

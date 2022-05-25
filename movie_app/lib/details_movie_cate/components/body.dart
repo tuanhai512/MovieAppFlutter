@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
+import 'package:movie_app/details/components/cast.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
 import 'package:movie_app/model/movie_cate.dart';
 import 'package:movie_app/model/movieDetail.dart';
@@ -214,6 +215,7 @@ class Body extends StatelessWidget {
                       ),
                       SizedBox(height: 20 / 2),
                       TitleDurationAndFabBtn(movie_cate: movie_cate),
+
                       Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 20 / 2,
@@ -264,7 +266,12 @@ class Body extends StatelessWidget {
                           horizontal: 20,
                         ),
                         child: Text('${movie_cate.overview ?? ""}'),
-                      )
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        height: 200,
+                        child: ListCast(id: movie_cate.id),
+                      ),
 
                       // CastAndCrew(casts: movie.cast),
                     ],
