@@ -25,12 +25,14 @@ class Cate_Movie extends StatelessWidget {
     Client client = Client();
     return Scaffold(
       appBar: AppBar(
-        actions: [IconButton(
-          onPressed: () {
-            showSearch(context: context, delegate: SearchMovie());
-          },
-          icon: Icon(Icons.search_sharp),
-        ),],
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: SearchMovie());
+            },
+            icon: Icon(Icons.search_sharp),
+          ),
+        ],
         backgroundColor: backgroundH,
       ),
       body: (FutureBuilder<Genres>(
@@ -47,7 +49,6 @@ class Cate_Movie extends StatelessWidget {
                 child: Text("Empty"),
               );
             } else {
-
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -58,58 +59,37 @@ class Cate_Movie extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (ctx, index) {
                   Movie_Cate movie_cate = snapshot.data.results[index];
-                  return Container(
-                        height: 260,
-                    child:Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
-                    child:
-                        GestureDetector(
-                          onTap: () {
-                          Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        DetailsScreen(movie_cate: movie_cate)));
-                          },
-                          child:
-                          Column(
-                              children: [
+                  return Card(
+
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0)),
+                        child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailsScreen(
+                                          movie_cate: movie_cate)));
+                            },
+                            child: Column(children: [
                               Container(
-                              height:170,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(20)),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://image.tmdb.org/t/p/w500${movie_cate.backdrop_path ?? movie_cate.poster_path ?? ''}'),
-                                ),
-                              )),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            color: Colors.yellow,
-                            child: Container(
-                              margin: EdgeInsets.all(5),
-                              child: Text(
-                                'IBM: ${movie_cate?.original_language}',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 8,
-                                    fontFamily: "null"),
-                              ),
-                            )),
-                        Text('${movie_cate.title}'),
-]
-                    ))
+                                height: 170,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                          'https://image.tmdb.org/t/p/w500${movie_cate.backdrop_path ?? movie_cate.poster_path ?? ''}'),
+                                    ),
+                                  )),
 
-                    //   ],
-                    // ),
-                  ) ,)
-                    ;
+                            ]))
 
+                        //   ],
+                        // ),
+                        )
+                  ;
 
                   // GestureDetector(
                   //   onTap: () {
