@@ -12,7 +12,6 @@ import '../../constants.dart';
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
 
-
   @override
   Widget build(BuildContext context) {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
@@ -26,28 +25,33 @@ class NavigationDrawerWidget extends StatelessWidget {
 
     return Drawer(
         child: Material(
-            color: backgroundH,
+            color: Colors.white,
             child: Column(
               children: [
                 Row(
-                  
                   children: [
-                    
-                    Expanded(child:  Text('Change Theme',style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                      
-                    )))
-                   , Expanded(child: SizedBox(width: 0,))
-                    ,ChangeThemeButtonWidget()],
+                    // Expanded(
+                    //     child: Text('Change Theme',
+                    //         style: TextStyle(
+                    //           fontSize: 15,
+                    //           color: Colors.white,
+                    //         ))),
+                    // Expanded(
+                    //     child: SizedBox(
+                    //   width: 0,
+                    // )),
+                    // ChangeThemeButtonWidget()
+                  ],
                 ),
                 Center(
-                    child: Text('The loai',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                        ))
-                ),
+                    child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                  child: Text('Thể loại',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                      )),
+                )),
                 Expanded(
                   child:
                       // padding:  EdgeInsets.symmetric(horizontal: 20) ,
@@ -68,7 +72,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                                 );
                               } else {
                                 return ListView.builder(
-                                  padding:padding ,
+                                    padding: padding,
                                     itemCount: snapshot.data.genres.length,
                                     scrollDirection: Axis.vertical,
                                     itemBuilder: (ctx, index) {
@@ -88,13 +92,14 @@ class NavigationDrawerWidget extends StatelessWidget {
                                                       builder: (context) =>
                                                           Cate_Movie(
                                                             // movie_cate:cate.id,
-                                                            id: cate.id  ,
+                                                            name: cate.name,
+                                                            id: cate.id,
                                                           )));
                                             },
                                             child: Row(children: [
                                               Icon(
                                                 Icons.movie,
-                                                color: Colors.white,
+                                                color: Colors.pink,
                                               ),
                                               const SizedBox(width: 16),
                                               Text(
@@ -102,7 +107,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                                                 '${cate.name}',
                                                 style: TextStyle(
                                                   fontSize: 15,
-                                                  color: Colors.white,
+                                                  color: Colors.black,
                                                 ),
                                               ),
                                             ]),

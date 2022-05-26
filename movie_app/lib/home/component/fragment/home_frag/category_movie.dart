@@ -16,24 +16,34 @@ class Cate_Movie extends StatelessWidget {
   Cate_Movie(
       {Key key,
       // this.movie_cate,
+      this.name,
       this.id})
       : super(key: key);
   // final Movie_Cate movie_cate;
   int id;
+  String name;
   @override
   Widget build(BuildContext context) {
     Client client = Client();
     return Scaffold(
       appBar: AppBar(
+        leading: SafeArea(child: BackButton(color: Colors.pink)),
+        title: Text(
+          "${this.name}",
+          style: TextStyle(color: Colors.pink),
+        ),
         actions: [
           IconButton(
             onPressed: () {
               showSearch(context: context, delegate: SearchMovie());
             },
-            icon: Icon(Icons.search_sharp),
+            icon: Icon(
+              Icons.search_sharp,
+              color: Colors.pink,
+            ),
           ),
         ],
-        backgroundColor: backgroundH,
+        backgroundColor: backgroundHeader,
       ),
       body: (FutureBuilder<Genres>(
         future: convertFromJsonToModel(client.getMoviebyCategory(id)),
@@ -59,8 +69,8 @@ class Cate_Movie extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (ctx, index) {
                   Movie_Cate movie_cate = snapshot.data.results[index];
-                  return Card(
-
+                  return new Stack(children: [
+                    Card(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
                         child: GestureDetector(
@@ -73,7 +83,7 @@ class Cate_Movie extends StatelessWidget {
                             },
                             child: Column(children: [
                               Container(
-                                height: 170,
+                                  height: 170,
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20)),
@@ -83,13 +93,24 @@ class Cate_Movie extends StatelessWidget {
                                           'https://image.tmdb.org/t/p/w500${movie_cate.backdrop_path ?? movie_cate.poster_path ?? ''}'),
                                     ),
                                   )),
-
                             ]))
 
                         //   ],
                         // ),
-                        )
-                  ;
+                        ),
+                    Padding(
+                        padding: EdgeInsets.only(left: 10, top: 150),
+                        child: Text(
+                          movie_cate?.title?.toUpperCase() ?? "",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              fontFamily: "null"),
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.right,
+                        )),
+                  ]);
 
                   // GestureDetector(
                   //   onTap: () {

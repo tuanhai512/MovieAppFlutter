@@ -18,7 +18,7 @@ class SplashPage extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(
-                    ("assets/images/nguoinhen.jpg"),
+                    ("assets/images/thor.jpeg"),
                   ),
                   fit: BoxFit.fill)),
           child: Column(
@@ -32,16 +32,9 @@ class SplashPage extends StatelessWidget {
                 height: 30,
               ),
               Text(
-                'Review',
+                'Loading',
                 style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-              Text(
-                'Movie',
-                style: TextStyle(
-                    color: Colors.red,
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
               ),

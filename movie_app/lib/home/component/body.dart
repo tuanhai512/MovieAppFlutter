@@ -40,12 +40,19 @@ class _BodyState extends State<Body> {
         backgroundColor: backgroundHeader,
         automaticallyImplyLeading: false,
         leading: HomeHeader(),
+        title: Text(
+          "The Movie Database",
+          style: TextStyle(color: Colors.pink),
+        ),
         actions: [
           IconButton(
             onPressed: () {
               showSearch(context: context, delegate: SearchMovie());
             },
-            icon: Icon(Icons.search_sharp, color: iconHeader,),
+            icon: Icon(
+              Icons.search_sharp,
+              color: Colors.pink,
+            ),
           )
         ],
       ),

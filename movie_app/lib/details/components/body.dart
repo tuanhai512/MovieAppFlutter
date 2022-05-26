@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
+import 'package:movie_app/constants.dart';
 import 'package:movie_app/details/components/cast.dart';
 import 'package:movie_app/details/components/title_duration_and_fav_btn.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
@@ -196,7 +197,7 @@ class Body extends StatelessWidget {
                               ),
                             ),
                             // Back Button
-                            SafeArea(child: BackButton()),
+                            SafeArea(child: BackButton(color: Colors.pink)),
                             Container(
                               height: size.height * 0.4,
                               padding: EdgeInsets.only(top: 80),
@@ -241,7 +242,7 @@ class Body extends StatelessWidget {
                         ),
                         child: SizedBox(
                           height: 64,
-                          width: 50,
+                          width: 500,
                           child: FlatButton(
                             onPressed: () {
                               if (movieDetail.status == false) {
@@ -279,7 +280,7 @@ class Body extends StatelessWidget {
                           horizontal: 20,
                         ),
                         child: Text(
-                          "Plot Summary \n ",
+                          "Tóm tắt cốt truyện \n ",
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ),

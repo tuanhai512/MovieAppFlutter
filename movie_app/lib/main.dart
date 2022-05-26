@@ -22,7 +22,7 @@ Future main() async {
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => ThemeProvider()),
-     ChangeNotifierProvider(create: (context) => FavoriteProvider())
+    ChangeNotifierProvider(create: (context) => FavoriteProvider())
   ], child: MyApp()));
 }
 
@@ -73,13 +73,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-   // final themeProvider = Provider.of<ThemeProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         // theme: MyThemes.lightTheme,
         // darkTheme: MyThemes.darkTheme,
-        home: HomePage(),
+        home: SplashPage(),
         routes: {
           SplashPage.routeName: (context) => SplashPage(),
           landingPage.routeName: (context) => landingPage(),

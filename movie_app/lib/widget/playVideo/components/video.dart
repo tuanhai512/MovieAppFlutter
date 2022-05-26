@@ -33,12 +33,17 @@ class _VideoState extends State<Video> {
       builder: (context, player) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(widget.title),
+            leading: BackButton(color: Colors.pink),
+            backgroundColor: Colors.white,
+            title: Text(
+              widget.title,
+              style: TextStyle(color: Colors.pink),
+            ),
           ),
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [player, Text("h")],
+              children: [player],
             ),
           ),
         );
