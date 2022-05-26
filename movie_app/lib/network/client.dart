@@ -69,6 +69,9 @@ class Client {
     print('Response body: ${response.body}');
     return response;
   }
+
+
+
   Future<http.Response> getMoviebyCategory(int id) async {
     var url = Uri.parse("$baseUrl/discover/movie?api_key=$apiKey&with_genres=$id&language=vi-US");
     var response = await http.get(url);

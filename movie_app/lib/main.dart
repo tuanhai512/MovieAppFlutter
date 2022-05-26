@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movie_app/details/details_screen.dart';
@@ -24,7 +22,7 @@ Future main() async {
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => ThemeProvider()),
-    ChangeNotifierProvider(create: (context) => FavoriteProvider()),
+     ChangeNotifierProvider(create: (context) => FavoriteProvider())
   ], child: MyApp()));
 }
 
@@ -37,8 +35,6 @@ class Favorite extends StatelessWidget {
       return MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-        
-         
           home: HomePage(),
           routes: {
             SplashPage.routeName: (context) => SplashPage(),
@@ -77,11 +73,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+   // final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: MyThemes.lightTheme,
-        darkTheme: MyThemes.darkTheme,
+        // theme: MyThemes.lightTheme,
+        // darkTheme: MyThemes.darkTheme,
         home: HomePage(),
         routes: {
           SplashPage.routeName: (context) => SplashPage(),

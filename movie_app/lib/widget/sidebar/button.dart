@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class ButtonWidget extends StatelessWidget {
   final IconData icon;
   final String text;
@@ -18,16 +20,18 @@ class ButtonWidget extends StatelessWidget {
         //   minimumSize: Size.fromHeight(50),
         // ),
         // child: buildContent(),
-        icon: new Icon(Icons.menu),
-        highlightColor: Colors.pink,
+        icon: new Icon(
+          Icons.menu,
+          color: iconHeader,
+        ),
+
         onPressed: onClicked,
       );
 
   Widget buildContent() => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(icon, size: 28),
-
-    ],
-  );
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 28),
+        ],
+      );
 }

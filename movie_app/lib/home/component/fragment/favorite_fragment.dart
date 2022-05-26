@@ -20,8 +20,7 @@ class FavoriteFrag extends StatelessWidget {
     var bookMark = Provider.of<FavoriteProvider>(context);
     // print(products.length.toString());
     return Expanded(
-        child: Column(
-      children: [
+        child: 
         // ButtonWidget(
         //   icon: Icons.open_in_new,
         //   text: 'Open Drawer',
@@ -48,8 +47,8 @@ class FavoriteFrag extends StatelessWidget {
                      ,
               );
             })
-      ],
-    ));
+      
+    );
   }
 }
 
