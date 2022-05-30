@@ -49,7 +49,7 @@ class Movie {
   String posterPath;
   String release_date;
   String title;
-  bool video;
+  bool video,adult;
   int voteCount;
   String voteAverage;
   bool status = false;
@@ -58,6 +58,7 @@ class Movie {
   Movie(
       {this.backdropPath,
       this.id,
+        this.adult,
       this.genre_ids,
       this.vote_count,
       this.year,
@@ -87,6 +88,7 @@ class Movie {
           posterPath: '',
           release_date: '',
           title: '',
+          adult:false,
           video: true,
           voteAverage: '',
           voteCount: 0);
@@ -106,6 +108,7 @@ class Movie {
         release_date: json['release_date'] as String,
         title: json['title'] as String,
         video: json['video'] as bool,
+        adult: json['adult'] as bool,
         voteCount: json['vote_count'] as int,
         voteAverage: json['vote_average'].toString() as String );
   }

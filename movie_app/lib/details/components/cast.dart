@@ -36,7 +36,7 @@ class ListCast extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 Cast cast = snapshot.data.cast[index];
                 return Container(
-                  margin:EdgeInsets.all(5) ,
+                  margin: EdgeInsets.all(5),
                   child: Column(
                     children: [
                       Container(
@@ -44,14 +44,21 @@ class ListCast extends StatelessWidget {
                         decoration: BoxDecoration(shape: BoxShape.circle),
                         child: ClipOval(
                           child: SizedBox.fromSize(
-                            size: Size.fromRadius(30), // Image radius
+                            size: Size.fromRadius(42), // Image radius
                             child: Image.network(
                                 'https://image.tmdb.org/t/p/w500${cast.profile_path}',
                                 fit: BoxFit.cover),
                           ),
                         ),
                       ),
-                      Text('${cast.name}')
+                      Text(
+                        '${cast.name}',
+                        style: TextStyle(fontSize: 11,fontWeight: FontWeight.bold),
+                      ),
+                   Text(
+                          '${cast.character}',
+                          style: TextStyle(fontSize: 9),
+                        ),
                     ],
                   ),
                 );
