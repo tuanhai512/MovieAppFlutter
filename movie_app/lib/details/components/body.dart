@@ -115,8 +115,7 @@ class Body extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: <Widget>[
-                                          SvgPicture.asset(
-                                              "assets/icons/star_fill.svg"),
+
                                           SizedBox(height: 20 / 4),
                                           Column(
                                             children: [
@@ -150,6 +149,7 @@ class Body extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
+
                                               Text(
                                                 "${movie.vote_count} đánh giá",
                                                 style: TextStyle(
@@ -160,13 +160,7 @@ class Body extends StatelessWidget {
                                         ],
                                       ),
                                       // Rate this
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          SizedBox(height: 20 / 4),
-                                        ],
-                                      ),
+
                                       // Metascore
                                       Column(
                                         mainAxisAlignment:
@@ -190,14 +184,25 @@ class Body extends StatelessWidget {
                                                     )),
                                               )),
                                         ],
-                                      )
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        children: <Widget>[
+
+                                          Text(
+                                            '${movie.release_date}',
+                                            style: TextStyle(color: Color(0xFF9A9BB2)),
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
                             // Back Button
-                            SafeArea(child: BackButton(color: Colors.pink)),
+                            SafeArea(child: BackButton(color: primarycolor)),
                             Container(
                               height: size.height * 0.4,
                               padding: EdgeInsets.only(top: 80),
@@ -229,58 +234,64 @@ class Body extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20 / 2),
-                      TitleDurationAndFabBtn(movie: movie),
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        height: 200,
-                        child: ListCast(id: movie.id),
-                      ),
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20 / 2,
-                          horizontal: 20,
-                        ),
-                        child: SizedBox(
-                          height: 64,
-                          width: 500,
-                          child: FlatButton(
-                            onPressed: () {
-                              if (movieDetail.status == false) {
-                                ItemModel itemModel = new ItemModel(
-                                    title: movie.title,
-                                    backdropPath: movie.backdropPath ??
-                                        movie.posterPath ??
-                                        '');
-                                bookMark.addItem(itemModel);
-                                setState(() {
-                                  movieDetail.status = true;
-                                  bookMark.itemList[index].status == true;
-                                });
-                              } else {
-                                setState(() {
-                                  movie.status = false;
-                                  bookMark.itemList[index].status == false;
-                                });
-                              }
-                            },
-                            color: Color(0xFFFE6D8E),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Icon(
-                              Icons.add,
-                              size: 28,
-                              color: Colors.white,
-                            ),
-                          ),
+                        padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        child: Text(
+                          movie.title ?? '',
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TitleDurationAndFabBtn(movie: movie),
+                          ),
+                          SizedBox(
+
+                            width: 80,
+                            height: 90,
+                              child: Center(
+                                child: FlatButton(
+                                  onPressed: () {
+                                    if (movieDetail.status == false) {
+                                      ItemModel itemModel = new ItemModel(
+                                          title: movie.title,
+                                          backdropPath: movie.backdropPath ??
+                                              movie.posterPath ??
+                                              '');
+                                      bookMark.addItem(itemModel);
+                                      setState(() {
+                                        movieDetail.status = true;
+                                        bookMark.itemList[index].status == true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        movie.status = false;
+                                        bookMark.itemList[index].status ==
+                                            false;
+                                      });
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.favorite_border_outlined,
+                                    size: 32,
+                                    color: primarycolor,
+                                  ),
+                                ),
+                              ),
+
+                          )
+                        ],
+                      ),
+
                       Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 20 / 2,
                           horizontal: 20,
                         ),
                         child: Text(
-                          "Tóm tắt cốt truyện \n ",
+                          "Tóm tắt cốt truyện  ",
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
@@ -289,8 +300,18 @@ class Body extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: 20,
                         ),
-                        child: Text('${movie.overview ?? ""}'),
-                      )
+                        child: Text(
+                          '${movie.overview ?? ""}',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(5),
+                        height: 180,
+                        child: ListCast(id: movie.id),
+                      ),
 
                       // CastAndCrew(casts: movie.cast),
                     ],

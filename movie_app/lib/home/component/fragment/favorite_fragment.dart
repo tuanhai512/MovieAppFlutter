@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:movie_app/constants.dart';
 import 'package:movie_app/model/category.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/network/client.dart';
@@ -20,7 +21,7 @@ class FavoriteFrag extends StatelessWidget {
     var bookMark = Provider.of<FavoriteProvider>(context);
     // print(products.length.toString());
     return Expanded(
-        child: 
+        child:
         // ButtonWidget(
         //   icon: Icons.open_in_new,
         //   text: 'Open Drawer',
@@ -33,9 +34,10 @@ class FavoriteFrag extends StatelessWidget {
             itemCount: bookMark.items.length,
             itemBuilder: (context, index) {
               return ListTile(
+
                 leading: Container(
-                  height: 10,
-                  width: 10,
+                  height: 80,
+                  width: 80,
                   child:  Image.network(
                           'https://image.tmdb.org/t/p/w500${bookMark.items[index].backdropPath ?? bookMark.items[index].posterPath ?? ''}')
                       ,
@@ -43,11 +45,11 @@ class FavoriteFrag extends StatelessWidget {
                 title:  Text(bookMark.items[index].title)
                    ,
                 trailing:
-                     Icon(Icons.star_border)
-                     ,
+                     Icon(Icons.favorite,color:primarycolor,),
               );
+
             })
-      
+
     );
   }
 }

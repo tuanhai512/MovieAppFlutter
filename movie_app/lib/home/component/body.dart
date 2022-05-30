@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/home/component/fragment/account_fragment.dart';
+import 'package:movie_app/constants.dart';
 import 'package:movie_app/home/component/fragment/favorite_fragment.dart';
 import 'package:movie_app/home/component/fragment/home_fragment.dart';
 import 'package:movie_app/home/component/fragment/notification_fragment.dart';
 import 'package:movie_app/home/component/homeheader.dart';
 import 'package:movie_app/model/movie.dart';
-import 'package:movie_app/constants.dart';
 import 'package:movie_app/widget/provider/theme_provider.dart';
 import 'package:movie_app/widget/sidebar/body.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import '../../widget/search/searchpage.dart';
-import '../../widget/sidebar/button.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -40,9 +38,9 @@ class _BodyState extends State<Body> {
         backgroundColor: backgroundHeader,
         automaticallyImplyLeading: false,
         leading: HomeHeader(),
-        title: Text(
+        title: Expanded(child:Text(
           "The Movie Database",
-          style: TextStyle(color: Colors.pink),
+          style: TextStyle(color: primarycolor),)
         ),
         actions: [
           IconButton(
@@ -51,7 +49,7 @@ class _BodyState extends State<Body> {
             },
             icon: Icon(
               Icons.search_sharp,
-              color: Colors.pink,
+              color:primarycolor,
             ),
           )
         ],
