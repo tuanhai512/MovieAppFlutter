@@ -86,6 +86,7 @@ class Client {
     print('Response body: ${response.body}');
     return response;
   }
+  
   //
   // Future<Movie> getMovieDetail(int movieId) async {
   //   try {

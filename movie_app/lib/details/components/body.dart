@@ -267,6 +267,7 @@ class Body extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             child: Icon(
+                              
                               Icons.add,
                               size: 28,
                               color: Colors.white,
