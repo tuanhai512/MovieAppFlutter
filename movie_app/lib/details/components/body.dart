@@ -233,48 +233,13 @@ class Body extends StatelessWidget {
                       ),
                       SizedBox(height: 20 / 2),
                       Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 20 / 2,
-                            horizontal: 20,
-                          ),
-                          child: SizedBox(
-                            height: 64,
-                            width: 500,
-                            child: FlatButton(
-                              onPressed: () {
-                                if (movieDetail.status == false) {
-                                  ItemModel itemModel = new ItemModel(
-                                      title: movie.title,
-                                      backdropPath: movie.backdropPath ??
-                                          movie.posterPath ??
-                                          '');
-                                  bookMark.addItem(itemModel);
-                                  setState(() {
-                                    movieDetail.status = true;
-                                    bookMark.itemList[index].status == true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    movie.status = false;
-                                    bookMark.itemList[index].status == false;
-                                  });
-                                }
-                              },
-                              color: Color(0xFFFE6D8E),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Icon(
-                                Icons.add,
-                                size: 28,
-                                color: Colors.white,
-                              ),
-                            ),
-                            // padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-                            // child: Text(
-                            //   movie.title ?? '',
-                            //   style: Theme.of(context).textTheme.headline5,
-                            // ),
-                          )),
+                        padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        child: Text(
+                          movie.title ?? '',
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                      ),
+
                       Row(
                         children: [
                           Expanded(
@@ -286,22 +251,17 @@ class Body extends StatelessWidget {
                             child: Center(
                               child: FlatButton(
                                 onPressed: () {
-                                  if (movieDetail.status == false) {
-                                    ItemModel itemModel = new ItemModel(
-                                        title: movie.title,
-                                        backdropPath: movie.backdropPath ??
-                                            movie.posterPath ??
-                                            '');
-                                    bookMark.addItem(itemModel);
-                                    setState(() {
-                                      movieDetail.status = true;
-                                      bookMark.itemList[index].status == true;
-                                    });
+                                  ItemModel itemModel = new ItemModel(
+                                      title: movie.title,
+                                      backdropPath: movie.backdropPath ??
+                                          movie.posterPath ??
+                                          '');
+                                  if (bookMark.checkItem(itemModel) == true) {
+                                    ItemModel model = bookMark.items[index];
+
+                                    bookMark.removeItem(model);
                                   } else {
-                                    setState(() {
-                                      movie.status = false;
-                                      bookMark.itemList[index].status == false;
-                                    });
+                                    bookMark.addItem(itemModel);
                                   }
                                 },
                                 child: Icon(
