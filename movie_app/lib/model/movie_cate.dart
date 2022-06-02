@@ -42,10 +42,11 @@ class Movie_Cate {
       poster_path,
       release_date,
       title;
-
+bool adult;
   Movie_Cate(
       {this.id,
       this.name,
+        this.adult,
       this.vote_count,
       this.vote_average,
       this.popularity,
@@ -73,6 +74,7 @@ class Movie_Cate {
           genre_ids: [],
           vote_average: "",
           popularity: 0.0,
+          adult: false,
           vote_count: 0);
     }
 
@@ -86,6 +88,8 @@ class Movie_Cate {
       poster_path: json['poster_path'] as String,
       release_date: json['release_date'] as String,
       title: json['title'] as String,
+      adult: json['adult'] as bool,
+
       genre_ids: json['genre_ids'] as List,
       vote_average: json['vote_average'].toString() as String,
       vote_count: json['vote_count'] as int,

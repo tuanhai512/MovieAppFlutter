@@ -184,7 +184,7 @@ class Body extends StatelessWidget {
                               ),
                             ),
                             // Back Button
-                            SafeArea(child: BackButton(color: Colors.pink)),
+                            SafeArea(child: BackButton(color: primarycolor)),
                             Container(
                               height: size.height * 0.4,
                               padding: EdgeInsets.only(top: 80),
@@ -241,7 +241,7 @@ class Body extends StatelessWidget {
                                           title: movie_cate.title,
                                           url: youtubeUrl)));
                             },
-                            color: Color(0xFFFE6D8E),
+                            color:primarycolor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             child: Icon(
