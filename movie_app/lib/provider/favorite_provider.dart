@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movie_app/model/item_model_fav.dart';
 import 'package:movie_app/network/client.dart';
 
@@ -11,8 +13,15 @@ class FavoriteProvider extends ChangeNotifier {
     items.add(data);
     print(data.title);
     print(items.length);
-    print("cc");
-    notifyListeners();
+  
+    Fluttertoast.showToast( msg: "Đã thêm vào danh sách yêu thích",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.green,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
 
     // }
   }
@@ -35,7 +44,14 @@ class FavoriteProvider extends ChangeNotifier {
   void removeItem(ItemModel data) {
     
     items.remove(data);
-    notifyListeners();
+     Fluttertoast.showToast( msg: "Đã xóa phim khỏi danh sách yêu thích",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
   }
 
   List<ItemModel> get itemList {
