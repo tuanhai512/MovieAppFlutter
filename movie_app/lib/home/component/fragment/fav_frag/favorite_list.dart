@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
 
+import '../../../../constants.dart';
 import '../../../../provider/favorite_provider.dart';
 
 class favoritePage extends StatefulWidget {
@@ -23,61 +24,48 @@ class _favoritePageState extends State<favoritePage> {
 
   @override
   Widget build(BuildContext context) {
-    var bookMark = Provider.of<FavoriteProvider>(context);
-    return FutureBuilder<Result>(
-      future: convertFromJsonToModel(client.getPopular()),
-      builder: (BuildContext context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (snapshot.hasData) {
-          if (snapshot.data?.results?.length == 0) {
-            return Center(
-              child: Text("Empty"),
-            );
-          } else {
-            return ListView.builder(
-                itemCount: snapshot.data?.results?.length,
-                itemBuilder: (ctx, index) {
-                  Movie movie = snapshot.data?.results[index];
-
-                  return Card(
-                      child: ListTile(
-                    leading: GestureDetector(
-                      onTap: () {
-                        //print(product.id.toString());
-                        // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
-                        // Navigator.push(
-                        //     context, MaterialPageRoute(builder: (context) => DetailsScreen(movie: movie)));
-                       
-                          ItemModel model;
-                          bookMark.removeItem(model);
-                        
-                      },
-                      child: Container(
-                        child: Image.network(
-                            'https://image.tmdb.org/t/p/w500${movie?.backdropPath ?? movie?.posterPath ?? ''}'),
-                        height: 80,
-                        width: 80,
-                      ),
+   var bookMark = Provider.of<FavoriteProvider>(context);
+    // print(products.length.toString());
+    return Expanded(
+        child:
+            // ButtonWidget(
+            //   icon: Icons.open_in_new,
+            //   text: 'Open Drawer',
+            //   onClicked: () {
+            //     Scaffold.of(context).openDrawer();
+            //   },
+            // ),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: bookMark.items.length,
+                itemBuilder: (context, index) {
+                  
+                  return Row(children: [
+                    Container(
+                      height: 80,
+                      width: 80,
+                      child: Image.network(
+                          'https://image.tmdb.org/t/p/w500${bookMark.items[index].backdropPath ?? bookMark.items[index].posterPath ?? ''}'),
                     ),
-                    title: Text(movie?.title ?? 'Không có dữ liệu'),
-                  ));
-                });
-          }
-        }
-        if (snapshot.hasError) {
-          return Center(
-            child: Text("Error ${snapshot.error}"),
-          );
-        }
-        return Center(
-          child: Text("Error"),
-        );
-      },
-    );
+                    Text(bookMark.items[index].title),
+                    Container(
+                      child: GestureDetector(
+                          onTap: () {
+                            ItemModel model = bookMark.items[index];
+
+                            bookMark.removeItem(model);
+
+                            {
+                              print(model);
+                            }
+                          },
+                          child: Icon(
+                            Icons.favorite,
+                            color: primarycolor,
+                          )),
+                    )
+                  ]);
+                }));
   }
 
   Future<Result> convertFromJsonToModel(Future<http.Response> response) async {

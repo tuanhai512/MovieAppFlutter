@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/constants.dart';
 import 'package:movie_app/home/component/fragment/favorite_fragment.dart';
 import 'package:movie_app/home/component/fragment/home_fragment.dart';
-import 'package:movie_app/home/component/fragment/notification_fragment.dart';
+import 'package:movie_app/home/component/fragment/history_fragment.dart';
 import 'package:movie_app/home/component/homeheader.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/widget/provider/theme_provider.dart';
@@ -29,7 +29,7 @@ class _BodyState extends State<Body> {
     List<Widget> screen = [
       HomeFrag(),
       FavoriteFrag(),
-      NotificationFrag(Result.data),
+      HistoryFrag(),
       // AccountFrag()
     ];
     return Scaffold(
@@ -38,10 +38,11 @@ class _BodyState extends State<Body> {
         backgroundColor: backgroundHeader,
         automaticallyImplyLeading: false,
         leading: HomeHeader(),
-        title: Expanded(child:Text(
+        title: Expanded(
+            child: Text(
           "The Movie Database",
-          style: TextStyle(color: primarycolor),)
-        ),
+          style: TextStyle(color: primarycolor),
+        )),
         actions: [
           IconButton(
             onPressed: () {
@@ -49,7 +50,7 @@ class _BodyState extends State<Body> {
             },
             icon: Icon(
               Icons.search_sharp,
-              color:primarycolor,
+              color: primarycolor,
             ),
           )
         ],

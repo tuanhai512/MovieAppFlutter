@@ -8,7 +8,11 @@ import 'package:flutter/widgets.dart';
 import 'package:movie_app/details/details_screen.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/network/client.dart';
+import 'package:movie_app/provider/history_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:quiver/strings.dart';
+
+import '../../../../model/item_model_fav.dart';
 
 Client client = Client();
 
@@ -18,6 +22,7 @@ class MovieLatest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // var productsAPI = Utilities().getProducts();
+
     return Container(
       padding: EdgeInsets.all(10),
       alignment: Alignment.center,
@@ -30,6 +35,7 @@ class MovieLatest extends StatelessWidget {
     return FutureBuilder<Result>(
       future: convertFromJsonToModel(client.getTopRate()),
       builder: (BuildContext context, snapshot) {
+        var bookMark = Provider.of<HistoryProvider>(context);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: CircularProgressIndicator(),
@@ -50,7 +56,15 @@ class MovieLatest extends StatelessWidget {
                 return new Stack(
                   children: <Widget>[
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                        ItemModel itemModel = new ItemModel(
+                            title: movie.title,
+                            backdropPath:
+                                movie.backdropPath ?? movie.posterPath ?? '');
+                        if (bookMark.checkItem(itemModel) == true) {
+                        } else {
+                          bookMark.addItem(itemModel);
+                        }
                         //print(product.id.toString());
                         // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
                         Navigator.push(
@@ -75,7 +89,6 @@ class MovieLatest extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.right,
                         )),
-                    
                     Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),

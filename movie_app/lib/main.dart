@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movie_app/details/details_screen.dart';
 import 'package:movie_app/home/component/fragment/home_frag/category_movie.dart';
+import 'package:movie_app/provider/history_provider.dart';
 import 'package:movie_app/screen/landingPage.dart';
 import 'package:movie_app/home/homepage.dart';
 import 'package:movie_app/signin/signinpage.dart';
@@ -22,8 +23,29 @@ Future main() async {
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => ThemeProvider()),
-    ChangeNotifierProvider(create: (context) => FavoriteProvider())
+    ChangeNotifierProvider(create: (context) => FavoriteProvider()),
+     ChangeNotifierProvider(create: (context) => HistoryProvider())
   ], child: MyApp()));
+}
+
+class History extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    ChangeNotifierProvider(builder: (context, _) {
+      final favoriteProvider = Provider.of<History>(context);
+      return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          home: HomePage(),
+          routes: {
+            SplashPage.routeName: (context) => SplashPage(),
+            landingPage.routeName: (context) => landingPage(),
+            HomePage.routeName: (context) => HomePage(),
+            // DetailsScreen.routeName : (context) => DetailsScreen(),
+          });
+    });
+  }
 }
 
 class Favorite extends StatelessWidget {

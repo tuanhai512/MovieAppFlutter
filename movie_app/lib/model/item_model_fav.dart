@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/model/movie.dart';
 
 class ItemModel {
   String backdropPath;
@@ -33,4 +34,7 @@ class ItemModel {
       this.video,
       this.voteCount,
       this.voteAverage});
+  List<Movie> getListMovie(int id){
+    
+  }
 }

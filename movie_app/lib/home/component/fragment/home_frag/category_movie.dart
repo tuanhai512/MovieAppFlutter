@@ -8,8 +8,11 @@ import 'package:movie_app/home/component/homeheader.dart';
 import 'package:movie_app/model/movie_cate.dart';
 import 'package:movie_app/network/client.dart';
 import 'package:movie_app/widget/search/searchpage.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../constants.dart';
+import '../../../../model/item_model_fav.dart';
+import '../../../../provider/history_provider.dart';
 
 class Cate_Movie extends StatelessWidget {
   static String routeName = "/cate_movie";
@@ -48,6 +51,7 @@ class Cate_Movie extends StatelessWidget {
       body: (FutureBuilder<Genres>(
         future: convertFromJsonToModel(client.getMoviebyCategory(id)),
         builder: (BuildContext context, snapshot) {
+           var bookMark = Provider.of<HistoryProvider>(context);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
                 // child: CircularProgressIndicator(),
@@ -75,6 +79,14 @@ class Cate_Movie extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15.0)),
                         child: GestureDetector(
                             onTap: () {
+                               ItemModel itemModel = new ItemModel(
+                            title: movie_cate.title,
+                            backdropPath:
+                                movie_cate.backdrop_path ?? movie_cate.poster_path ?? '');
+                        if (bookMark.checkItem(itemModel) == true) {
+                        } else {
+                          bookMark.addItem(itemModel);
+                        }
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

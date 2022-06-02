@@ -8,6 +8,10 @@ import 'package:movie_app/details/details_screen.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/network/client.dart';
 import 'package:movie_app/constants.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../model/item_model_fav.dart';
+import '../../../../provider/history_provider.dart';
 
 class MovieUpcoming extends StatelessWidget {
   static String routeName = '/movie_upcoming';
@@ -59,6 +63,7 @@ class MovieItem extends StatelessWidget {
     return FutureBuilder<Result>(
       future: convertFromJsonToModel(client.getUpComing()),
       builder: (BuildContext context, snapshot) {
+         var bookMark = Provider.of<HistoryProvider>(context);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             // child: CircularProgressIndicator(),
@@ -80,7 +85,15 @@ class MovieItem extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0)),
                     child: GestureDetector(
-                        onTap: () {
+                        onTap: ()  async {
+                          ItemModel itemModel = new ItemModel(
+                            title: movie.title,
+                            backdropPath:
+                                movie.backdropPath ?? movie.posterPath ?? '');
+                        if (bookMark.checkItem(itemModel) == true) {
+                        } else {
+                          bookMark.addItem(itemModel);
+                        }
                           //print(product.id.toString());
                           // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
                           Navigator.push(

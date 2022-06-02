@@ -11,7 +11,10 @@ import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
 import 'package:movie_app/model/movie_cate.dart';
 import 'package:movie_app/model/movieDetail.dart';
 import 'package:movie_app/widget/playVideo/components/video.dart';
+import 'package:provider/provider.dart';
+import '../../provider/favorite_provider.dart';
 import 'title_duration_and_fav_btn.dart';
+import 'package:movie_app/model/item_model_fav.dart';
 
 class Body extends StatelessWidget {
   final Movie_Cate movie_cate;
@@ -24,7 +27,7 @@ class Body extends StatelessWidget {
     client.getYoutubeId(movie_cate.id);
     print(client.getYoutubeId(movie_cate.id));
     // print(MovieDetail);
-
+    var bookMark = Provider.of<FavoriteProvider>(context);
     Size size = MediaQuery.of(context).size;
 
     return FutureBuilder<ResultDetail>(
@@ -228,20 +231,20 @@ class Body extends StatelessWidget {
                           width: 500,
                           child: FlatButton(
                             onPressed: () async {
-                              final youtubeUrl =
-                                  "https://www.youtube.com/watch?v=${movieDetail.key}}";
-                              // print("MDT ${movieDetail.key}");
-                              // if (await canLaunch(youtubeUrl)) {
-                              //   launch(youtubeUrl);
-                              // }
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Video(
-                                          title: movie_cate.title,
-                                          url: youtubeUrl)));
+                              ItemModel itemModel = new ItemModel(
+                                  title: movie_cate.title,
+                                  backdropPath: movie_cate.backdrop_path ??
+                                      movie_cate.poster_path ??
+                                      '');
+                              if (bookMark.checkItem(itemModel) == true) {
+                                ItemModel model = bookMark.items[index];
+
+                                bookMark.removeItem(model);
+                              } else {
+                                bookMark.addItem(itemModel);
+                              }
                             },
-                            color:primarycolor,
+                            color: primarycolor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             child: Icon(
