@@ -4,10 +4,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
-import 'package:movie_app/constants.dart';
 import 'package:movie_app/details/details_screen.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/network/client.dart';
+import 'package:movie_app/constants.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../model/item_model_fav.dart';
@@ -29,12 +29,12 @@ class MoviePopular extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  ' PHỔ BIẾN',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: primarycolor),
-                )),
+                      ' PHIM PHỔ BIẾN',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: primarycolor),
+                    )),
                 // Text(
                 //   'See more',
                 //   style: TextStyle(fontSize: 16, color: Colors.lightBlue),
@@ -63,11 +63,11 @@ class MovieItem extends StatelessWidget {
     return FutureBuilder<Result>(
       future: convertFromJsonToModel(client.getPopular()),
       builder: (BuildContext context, snapshot) {
-         var bookMark = Provider.of<HistoryProvider>(context);
+        var bookMark = Provider.of<HistoryProvider>(context);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
-              // child: CircularProgressIndicator(),
-              );
+            // child: CircularProgressIndicator(),
+          );
         }
         if (snapshot.hasData) {
           if (snapshot.data?.results?.length == 0) {
@@ -85,15 +85,24 @@ class MovieItem extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0)),
                     child: GestureDetector(
-                        onTap: () async {
-                           ItemModel itemModel = new ItemModel(
-                            title: movie.title,
-                            backdropPath:
-                                movie.backdropPath ?? movie.posterPath ?? '');
-                        if (bookMark.checkItem(itemModel) == true) {
-                        } else {
-                          bookMark.addItem(itemModel);
-                        }
+                        onTap: ()  async {
+                          ItemModel itemModel = new ItemModel(
+                              id: movie.id,
+                              title: movie.title,
+                              genre_ids:movie.genre_ids,
+                              vote_count: movie.vote_count,
+                              voteAverage: movie.voteAverage,
+                              overview: movie.overview,
+                              year: movie.year,
+                              originalLanguage:movie.originalLanguage ,
+                              release_date: movie.release_date,
+                              backdropPath: movie.backdropPath ??
+                                  movie.posterPath ??
+                                  '');
+                          if (bookMark.checkItem(itemModel) == true) {
+                          } else {
+                            bookMark.addItem(itemModel);
+                          }
                           //print(product.id.toString());
                           // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
                           Navigator.push(
@@ -143,17 +152,16 @@ class MovieItem extends StatelessWidget {
                                   Card(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(10.0)),
+                                          BorderRadius.circular(10.0)),
                                       color: Colors.yellow,
                                       child: Padding(
                                         padding: EdgeInsets.all(5),
                                         child:
-                                            Text('IDMB ${movie.voteAverage}',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                )),
+                                       Text('IDMB ${movie.voteAverage}',
+                                            style: TextStyle(
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.bold,
+                                            )),
                                       )),
                                 ],
                               ),
@@ -180,7 +188,7 @@ class MovieItem extends StatelessWidget {
                                 Icon(
                                   Icons.favorite_rounded,
                                   size: 24,
-                                  color: Colors.redAccent,
+                                  color: primarycolor,
                                 ),
                                 SizedBox(width: 60),
                                 Icon(
@@ -191,8 +199,7 @@ class MovieItem extends StatelessWidget {
                               ],
                             )
                           ],
-                        )
-                        ),
+                        )),
                   );
                 });
           }

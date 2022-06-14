@@ -1,16 +1,13 @@
 //
 import 'package:flutter/material.dart';
-import 'package:movie_app/details/details_screen.dart';
-import 'package:movie_app/model/item_model_fav.dart';
-import 'package:movie_app/model/movie.dart';
+import 'package:movie_app/model/item_model_his.dart';
 import 'package:movie_app/network/client.dart';
-
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
 
 import '../../../../constants.dart';
+import '../../../../detail_item_model_fav/details_screen.dart';
 import '../../../../provider/favorite_provider.dart';
 
 class favoritePage extends StatefulWidget {
@@ -24,35 +21,47 @@ class _favoritePageState extends State<favoritePage> {
 
   @override
   Widget build(BuildContext context) {
-   var bookMark = Provider.of<FavoriteProvider>(context);
+    var bookMark = Provider.of<FavoriteProvider>(context);
     // print(products.length.toString());
     return Expanded(
-        child:
-            // ButtonWidget(
-            //   icon: Icons.open_in_new,
-            //   text: 'Open Drawer',
-            //   onClicked: () {
-            //     Scaffold.of(context).openDrawer();
-            //   },
-            // ),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: bookMark.items.length,
-                itemBuilder: (context, index) {
-                  
-                  return Row(children: [
-                    Container(
-                      height: 80,
-                      width: 80,
-                      child: Image.network(
-                          'https://image.tmdb.org/t/p/w500${bookMark.items[index].backdropPath ?? bookMark.items[index].posterPath ?? ''}'),
+        child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: bookMark.items.length,
+            itemBuilder: (context, index) {
+              ItemModelFav model = bookMark.items[index];
+
+              return Container(
+                  padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                  child: Row(children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailsScreen(movie: model)));
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 80,
+                        child: Image.network(
+                          'https://image.tmdb.org/t/p/w500${bookMark.items[index].backdropPath ?? bookMark.items[index].posterPath ?? ''}',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
-                    Text(bookMark.items[index].title),
-                    Container(
+                    SizedBox(
+                      width: 200,
+                      child: Padding(
+                        child: Text(bookMark.items[index].title),
+                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      ),
+                    ),
+                    Expanded(
+                        child: Container(
                       child: GestureDetector(
                           onTap: () {
-                            ItemModel model = bookMark.items[index];
-
+                            ItemModelFav model = bookMark.items[index];
                             bookMark.removeItem(model);
 
                             {
@@ -63,17 +72,8 @@ class _favoritePageState extends State<favoritePage> {
                             Icons.favorite,
                             color: primarycolor,
                           )),
-                    )
-                  ]);
-                }));
-  }
-
-  Future<Result> convertFromJsonToModel(Future<http.Response> response) async {
-    final responseResult = await response;
-    if (responseResult.statusCode == 200) {
-      final jsMap = jsonDecode(responseResult.body);
-      return Result.fromJson(jsMap);
-    }
-    return null;
+                    )),
+                  ]));
+            }));
   }
 }

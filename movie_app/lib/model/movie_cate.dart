@@ -30,11 +30,10 @@ class Genres {
 }
 
 class Movie_Cate {
-  int id, vote_count;
-  double popularity;
+  int id, vote_count,year;
+  double popularity,vote_average;
   List genre_ids;
   String name,
-      vote_average,
       backdrop_path,
       original_language,
       original_title,
@@ -57,6 +56,7 @@ bool adult;
       this.overview,
       this.poster_path,
       this.release_date,
+        this.year,
       this.title});
 
   factory Movie_Cate.fromJson(dynamic json) {
@@ -71,8 +71,9 @@ bool adult;
           poster_path: '',
           release_date: '',
           title: '',
+          year: 0,
           genre_ids: [],
-          vote_average: "",
+          vote_average: 0.0,
           popularity: 0.0,
           adult: false,
           vote_count: 0);
@@ -89,9 +90,9 @@ bool adult;
       release_date: json['release_date'] as String,
       title: json['title'] as String,
       adult: json['adult'] as bool,
-
+year: json['year'] as int,
       genre_ids: json['genre_ids'] as List,
-      vote_average: json['vote_average'].toString() as String,
+      vote_average: json['vote_average'] as double,
       vote_count: json['vote_count'] as int,
       popularity: json['popularity'] as double,
     );

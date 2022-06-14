@@ -51,7 +51,7 @@ class Cate_Movie extends StatelessWidget {
       body: (FutureBuilder<Genres>(
         future: convertFromJsonToModel(client.getMoviebyCategory(id)),
         builder: (BuildContext context, snapshot) {
-           var bookMark = Provider.of<HistoryProvider>(context);
+          var bookMark = Provider.of<HistoryProvider>(context);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
                 // child: CircularProgressIndicator(),
@@ -79,14 +79,23 @@ class Cate_Movie extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15.0)),
                         child: GestureDetector(
                             onTap: () {
-                               ItemModel itemModel = new ItemModel(
-                            title: movie_cate.title,
-                            backdropPath:
-                                movie_cate.backdrop_path ?? movie_cate.poster_path ?? '');
-                        if (bookMark.checkItem(itemModel) == true) {
-                        } else {
-                          bookMark.addItem(itemModel);
-                        }
+                              ItemModel itemModel = new ItemModel(
+                                  id: movie_cate.id,
+                                  title: movie_cate.title,
+                                  genre_ids:movie_cate.genre_ids,
+                                  vote_count: movie_cate.vote_count,
+                                  voteAverage: movie_cate.vote_average,
+                                  overview: movie_cate.overview,
+                                  year: movie_cate.year,
+                                  originalLanguage:movie_cate.original_language ,
+                                  release_date: movie_cate.release_date,
+                                  backdropPath: movie_cate.backdrop_path ??
+                                      movie_cate.poster_path ??
+                                      '');
+                              if (bookMark.checkItem(itemModel) == true) {
+                              } else {
+                                bookMark.addItem(itemModel);
+                              }
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -95,12 +104,12 @@ class Cate_Movie extends StatelessWidget {
                             },
                             child: Column(children: [
                               Container(
-                                  height: 170,
+                                  height: 171,
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20)),
                                     image: DecorationImage(
-                                      fit: BoxFit.cover,
+                                      fit: BoxFit.fill,
                                       image: NetworkImage(
                                           'https://image.tmdb.org/t/p/w500${movie_cate.backdrop_path ?? movie_cate.poster_path ?? ''}'),
                                     ),

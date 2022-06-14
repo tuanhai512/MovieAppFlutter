@@ -58,9 +58,18 @@ class MovieLatest extends StatelessWidget {
                     GestureDetector(
                       onTap: () async {
                         ItemModel itemModel = new ItemModel(
+                            id: movie.id,
                             title: movie.title,
-                            backdropPath:
-                                movie.backdropPath ?? movie.posterPath ?? '');
+                            genre_ids:movie.genre_ids,
+                            vote_count: movie.vote_count,
+                            voteAverage: movie.voteAverage,
+                            overview: movie.overview,
+                            year: movie.year,
+                            originalLanguage:movie.originalLanguage ,
+                            release_date: movie.release_date,
+                            backdropPath: movie.backdropPath ??
+                                movie.posterPath ??
+                        '');
                         if (bookMark.checkItem(itemModel) == true) {
                         } else {
                           bookMark.addItem(itemModel);

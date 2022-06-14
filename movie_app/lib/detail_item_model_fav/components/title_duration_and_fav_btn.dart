@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/model/category.dart';
-import '../../model/movie.dart';
+import 'package:movie_app/model/item_model_fav.dart';
+import 'package:movie_app/model/item_model_his.dart';
 
 class TitleDurationAndFabBtn extends StatelessWidget {
   const TitleDurationAndFabBtn({
@@ -8,7 +8,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
     this.movie,
   }) : super(key: key);
 
-  final Movie movie;
+  final ItemModelFav movie;
 
   @override
   Widget build(BuildContext context) {

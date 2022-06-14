@@ -13,8 +13,8 @@ import 'package:provider/provider.dart';
 import '../../../../model/item_model_fav.dart';
 import '../../../../provider/history_provider.dart';
 
-class MovieUpcoming extends StatelessWidget {
-  static String routeName = '/movie_upcoming';
+class MovieNowPlaying extends StatelessWidget {
+  static String routeName = '/movie_nowplaying';
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MovieUpcoming extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                      ' PHIM SẮP CHIẾU',
+                      ' PHIM ĐANG CÔNG CHIẾU',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -61,9 +61,9 @@ class MovieItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Result>(
-      future: convertFromJsonToModel(client.getUpComing()),
+      future: convertFromJsonToModel(client.getNowPlaying()),
       builder: (BuildContext context, snapshot) {
-         var bookMark = Provider.of<HistoryProvider>(context);
+        var bookMark = Provider.of<HistoryProvider>(context);
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             // child: CircularProgressIndicator(),
@@ -99,10 +99,10 @@ class MovieItem extends StatelessWidget {
                               backdropPath: movie.backdropPath ??
                                   movie.posterPath ??
                                   '');
-                        if (bookMark.checkItem(itemModel) == true) {
-                        } else {
-                          bookMark.addItem(itemModel);
-                        }
+                          if (bookMark.checkItem(itemModel) == true) {
+                          } else {
+                            bookMark.addItem(itemModel);
+                          }
                           //print(product.id.toString());
                           // Navigator.pushNamed(context, DetailsScreen.routeName,arguments: MovieDetailsArguments(movie: movie!));
                           Navigator.push(

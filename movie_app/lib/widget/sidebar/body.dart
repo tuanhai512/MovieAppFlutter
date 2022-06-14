@@ -99,7 +99,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                                             child: Row(children: [
                                               Icon(
                                                 Icons.movie,
-                                                color: Colors.pink,
+                                                color: primarycolor,
                                               ),
                                               const SizedBox(width: 16),
                                               Text(

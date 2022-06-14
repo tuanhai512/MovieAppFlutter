@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:movie_app/constants.dart';
 import 'package:movie_app/details/components/cast.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
+import 'package:movie_app/model/item_model_his.dart';
 import 'package:movie_app/model/movie_cate.dart';
 import 'package:movie_app/model/movieDetail.dart';
 import 'package:movie_app/widget/playVideo/components/video.dart';
@@ -219,41 +220,54 @@ class Body extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20 / 2),
-                      TitleDurationAndFabBtn(movie_cate: movie_cate),
-
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20 / 2,
-                          horizontal: 20,
+                        padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+                        child: Text(
+                          movie_cate.title ?? '',
+                          style: Theme.of(context).textTheme.headline5,
                         ),
-                        child: SizedBox(
-                          height: 64,
-                          width: 500,
-                          child: FlatButton(
-                            onPressed: () async {
-                              ItemModel itemModel = new ItemModel(
-                                  title: movie_cate.title,
-                                  backdropPath: movie_cate.backdrop_path ??
-                                      movie_cate.poster_path ??
-                                      '');
-                              if (bookMark.checkItem(itemModel) == true) {
-                                ItemModel model = bookMark.items[index];
-
-                                bookMark.removeItem(model);
-                              } else {
-                                bookMark.addItem(itemModel);
-                              }
-                            },
-                            color: primarycolor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Icon(
-                              Icons.add,
-                              size: 28,
-                              color: Colors.white,
-                            ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TitleDurationAndFabBtn(movie_cate: movie_cate),
                           ),
-                        ),
+                          SizedBox(
+                            width: 80,
+                            height: 90,
+                            child: Center(
+                              child: FlatButton(
+                                onPressed: () {
+                                  ItemModelFav itemModel = new ItemModelFav(
+                                      id: movie_cate.id,
+                                      title: movie_cate.title,
+                                      genre_ids:movie_cate.genre_ids,
+                                      vote_count: movie_cate.vote_count,
+                                      voteAverage: movie_cate.vote_average,
+                                      overview: movie_cate.overview,
+                                      year: movie_cate.year,
+                                      originalLanguage:movie_cate.original_language ,
+                                      release_date: movie_cate.release_date,
+                                      backdropPath: movie_cate.backdrop_path ??
+                                          movie_cate.poster_path ??
+                                          '');
+                                  if (bookMark.checkItem(itemModel) == true) {
+                                    ItemModelFav model = bookMark.items[index];
+
+                                    bookMark.removeItem(model);
+                                  } else {
+                                    bookMark.addItem(itemModel);
+                                  }
+                                },
+                                child: Icon(
+                                  Icons.favorite_border_outlined,
+                                  size: 32,
+                                  color: primarycolor,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(

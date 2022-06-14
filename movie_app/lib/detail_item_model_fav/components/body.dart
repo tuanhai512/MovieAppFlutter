@@ -3,34 +3,30 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart';
 import 'package:movie_app/constants.dart';
 import 'package:movie_app/details/components/cast.dart';
-import 'package:movie_app/details/components/title_duration_and_fav_btn.dart';
+import 'package:movie_app/detail_item_model_fav/components/title_duration_and_fav_btn.dart';
 import 'package:movie_app/home/component/fragment/home_frag/movie_latest.dart';
-import 'package:movie_app/model/cast_in_movie.dart';
-import 'package:movie_app/model/item_model_fav.dart';
 import 'package:movie_app/model/item_model_his.dart';
-import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/model/movieDetail.dart';
-import 'package:movie_app/network/client.dart';
-
 import 'package:movie_app/provider/favorite_provider.dart';
+import 'package:movie_app/provider/history_provider.dart';
 import 'package:movie_app/widget/playVideo/components/video.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // import 'cast_and_crew.dart';
 import 'title_duration_and_fav_btn.dart';
 
 class Body extends StatelessWidget {
-  final Movie movie;
+  final ItemModelFav movie;
 
   const Body({Key key, this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    bool check =false;
     // it will provide us total height and width
     var bookMark = Provider.of<FavoriteProvider>(context);
     client.getCastInMovie(movie.id);
@@ -250,7 +246,8 @@ class Body extends StatelessWidget {
                             width: 80,
                             height: 90,
                             child: Center(
-                              child: FlatButton(
+                              child: IconButton(
+
                                 onPressed: () {
                                   ItemModelFav itemModel = new ItemModelFav(
                                       id: movie.id,
@@ -266,18 +263,32 @@ class Body extends StatelessWidget {
                                           movie.posterPath ??
                                           '');
                                   if (bookMark.checkItem(itemModel) == true) {
+
+                                    check = true;
+
                                     ItemModelFav model = bookMark.items[index];
                                     bookMark.removeItem(model);
 
                                   } else {
+                                    check =false;
+
                                     bookMark.addItem(itemModel);
-                                  }
+                                  };
+                                  print(check);
+
                                 },
-                                child: Icon(
-                                  Icons.favorite_border_outlined,
-                                  size: 32,
-                                  color: primarycolor,
-                                ),
+                                icon: check
+                                  ? Icon(
+                                Icons.favorite_border_outlined,
+                                size: 32,
+                                color: primarycolor,
+                              )
+                                  : Icon(
+                                Icons.favorite,
+                                size: 32,
+                                color: primarycolor,
+                              ),
+
                               ),
                             ),
                           )
@@ -331,6 +342,7 @@ class Body extends StatelessWidget {
         );
       },
     );
+
   }
 
   Future<ResultDetail> convertFromJsonToModel(Future<Response> response) async {
@@ -342,19 +354,23 @@ class Body extends StatelessWidget {
     }
     return null;
   }
-Widget iconFav(check){
-    if(check==true){
-      return Icon(
-        Icons.favorite,
-        size: 32,
-        color: primarycolor,
-      );
-    }else{
-      return Icon(
-        Icons.favorite_border_outlined,
-        size: 32,
-        color: primarycolor,
-      );
-    }
-}
+  //
+  // Widget iconFav(check) {
+  //   if (check == true) {
+  //     print("hhh: $check ");
+  //     return Icon(
+  //       Icons.favorite_border_outlined,
+  //       size: 32,
+  //       color: primarycolor,
+  //     );
+  //   } else {
+  //     print("hhh: $check ");
+  //     return Icon(
+  //       Icons.check,
+  //       size: 32,
+  //       color: primarycolor,
+  //     );
+  //   }
+  // }
+
 }

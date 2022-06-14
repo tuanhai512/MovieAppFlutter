@@ -13,6 +13,7 @@ class HistoryProvider extends ChangeNotifier {
     items.add(data);
     print(data.title);
     print(items.length);
+notifyListeners();
 
     // }
   }
@@ -34,6 +35,15 @@ class HistoryProvider extends ChangeNotifier {
 
   void removeItem(ItemModel data) {
     items.remove(data);
+    Fluttertoast.showToast( msg: "Đã xóa phim khỏi lịch sử",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+    notifyListeners();
   }
 
   List<ItemModel> get itemList {
