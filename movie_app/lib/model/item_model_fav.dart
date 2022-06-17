@@ -14,7 +14,7 @@ class ItemModel {
   String title;
   bool video,adult;
   int voteCount;
-  double voteAverage;
+  String voteAverage;
   bool status;
   String error;
   List genre_ids;
@@ -53,7 +53,7 @@ class ItemModel {
           title: '',
           adult:false,
           video: true,
-          voteAverage: 0.0,
+          voteAverage: '',
           voteCount: 0);
     }
 
@@ -73,7 +73,7 @@ class ItemModel {
         video: json['video'] as bool,
         adult: json['adult'] as bool,
         voteCount: json['vote_count'] as int,
-        voteAverage: json['vote_average'] as double );
+        voteAverage: json['vote_average'].toString() as String );
   }
 }
   List<Movie> getListMovie(int id){
